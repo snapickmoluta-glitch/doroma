@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>ドロマ - ゲームで稼ぐポイ活</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #6C5CE7;
+  --primary-dark: #5A4BD1;
+  --accent: #00D2D3;
+  --accent-glow: #00F5F5;
+  --gold: #FFD700;
+  --gold-dark: #E6C200;
+  --bg: #0F0F1A;
+  --bg-card: #1A1A2E;
+  --bg-card-hover: #222240;
+  --text: #FFFFFF;
+  --text-sub: #8B8BA7;
+  --success: #00E676;
+  --danger: #FF5252;
+  --border: rgba(255,255,255,0.06);
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,15,26,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  box-shadow: 0 4px 15px rgba(108,92,231,0.4);
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notification-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  position: relative;
+  cursor: pointer;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--danger);
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6B6B, #FFA07A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===== BALANCE CARD ===== */
+.balance-card {
+  margin: 16px 20px;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--primary), #8B5CF6, var(--accent));
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.balance-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+
+.balance-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40%;
+  left: -20%;
+  width: 150px;
+  height: 150px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+
+.balance-label {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.balance-amount {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.balance-amount .unit {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.balance-sub {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+.balance-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.balance-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s;
+}
+
+.balance-btn:active { transform: scale(0.97); }
+
+.balance-btn.primary {
+  background: white;
+  color: var(--primary);
+}
+
+.balance-btn.secondary {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+/* ===== DAILY STREAK ===== */
+.streak-section {
+  margin: 0 20px 16px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.streak-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.streak-title {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.streak-count {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.streak-days {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.streak-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.streak-day-label {
+  font-size: 11px;
+  color: var(--text-sub);
+}
+
+.streak-day-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 2px solid var(--border);
+  background: var(--bg);
+}
+
+.streak-day-circle.done {
+  border-color: var(--success);
+  background: rgba(0,230,118,0.1);
+}
+
+.streak-day-circle.today {
+  border-color: var(--gold);
+  background: rgba(255,215,0,0.15);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,215,0,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(255,215,0,0); }
+}
+
+.streak-day-pts {
+  font-size: 10px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.section-more {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== HOT OFFERS ===== */
+.hot-offers {
+  padding: 0 20px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+}
+
+.hot-offers::-webkit-scrollbar { display: none; }
+
+.hot-offer-card {
+  min-width: 160px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.hot-offer-card:active { transform: scale(0.97); }
+
+.hot-offer-img {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  position: relative;
+}
+
+.hot-offer-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--danger);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.hot-offer-info {
+  padding: 12px;
+}
+
+.hot-offer-name {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hot-offer-reward {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.hot-offer-reward .small {
+  font-size: 11px;
+  color: var(--text-sub);
+  font-weight: 500;
+}
+
+/* ===== GAME LIST ===== */
+.game-list {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.game-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+  align-items: center;
+}
+
+.game-card:active { background: var(--bg-card-hover); }
+
+.game-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  flex-shrink: 0;
+}
+
+.game-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.game-name {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.game-desc {
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.game-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.game-tag {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(108,92,231,0.15);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.game-tag.easy {
+  background: rgba(0,230,118,0.1);
+  color: var(--success);
+}
+
+.game-tag.time {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-sub);
+}
+
+.game-reward {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.game-reward-amount {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.game-reward-label {
+  font-size: 10px;
+  color: var(--text-sub);
+}
+
+/* ===== WEEKLY JACKPOT ===== */
+.jackpot-banner {
+  margin: 0 20px 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1a2e, #2d1b4e);
+  border-radius: 16px;
+  border: 1px solid rgba(255,215,0,0.2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.jackpot-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.1), transparent 70%);
+}
+
+.jackpot-label {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.jackpot-amount {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--gold);
+  position: relative;
+  text-shadow: 0 0 30px rgba(255,215,0,0.3);
+}
+
+.jackpot-sub {
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-top: 6px;
+  position: relative;
+}
+
+/* ===== RANKING ===== */
+.ranking-section {
+  margin: 0 20px 24px;
+  padding: 20px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.ranking-item:last-child { border-bottom: none; }
+
+.ranking-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.ranking-num.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+.ranking-num.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+.ranking-num.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+
+.ranking-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.ranking-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ranking-pts {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0 28px;
+  background: rgba(15,15,26,0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  min-width: 56px;
+}
+
+.nav-item.active { opacity: 1; }
+
+.nav-item-icon {
+  font-size: 22px;
+}
+
+.nav-item-label {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.nav-item.active .nav-item-label {
+  color: var(--accent);
+}
+
+/* ===== PAGES ===== */
+.page { display: none; padding-bottom: 90px; }
+.page.active { display: block; }
+
+/* ===== WITHDRAW PAGE ===== */
+.withdraw-options {
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.withdraw-card {
+  padding: 20px 16px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.withdraw-card:active {
+  background: var(--bg-card-hover);
+  transform: scale(0.97);
+}
+
+.withdraw-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.withdraw-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.withdraw-min {
+  font-size: 11px;
+  color: var(--text-sub);
+}
+
+.withdraw-speed {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(0,230,118,0.1);
+  color: var(--success);
+  font-weight: 600;
+}
+
+/* ===== RANKING PAGE ===== */
+.ranking-podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px 20px 20px;
+  margin-bottom: 20px;
+}
+
+.podium-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.podium-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 3px solid;
+}
+
+.podium-item:nth-child(2) .podium-avatar {
+  width: 72px;
+  height: 72px;
+  font-size: 32px;
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(255,215,0,0.3);
+}
+
+.podium-item:nth-child(1) .podium-avatar { border-color: #C0C0C0; }
+.podium-item:nth-child(3) .podium-avatar { border-color: #CD7F32; }
+
+.podium-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.podium-pts {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.podium-rank {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+/* ===== PROFILE PAGE ===== */
+.profile-header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6B6B, #FFA07A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin: 0 auto 12px;
+  border: 3px solid var(--accent);
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.profile-level {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 1px;
+  margin: 20px 20px 24px;
+  background: var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.profile-stat {
+  flex: 1;
+  padding: 16px 8px;
+  background: var(--bg-card);
+  text-align: center;
+}
+
+.profile-stat-num {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.profile-stat-label {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-top: 2px;
+}
+
+.profile-menu {
+  padding: 0 20px;
+}
+
+.profile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--bg-card);
+  border-radius: 14px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+}
+
+.profile-menu-icon {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(108,92,231,0.1);
+  border-radius: 10px;
+}
+
+.profile-menu-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-menu-arrow {
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
+/* ===== CATEGORY TABS ===== */
+.category-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.category-tabs::-webkit-scrollbar { display: none; }
+
+.category-tab {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.category-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.game-card, .hot-offer-card, .withdraw-card {
+  animation: slideUp 0.4s ease forwards;
+}
+
+/* Splash screen */
+.splash {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  flex-direction: column;
+  gap: 16px;
+  transition: opacity 0.5s;
+}
+
+.splash.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-logo {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 900;
+  box-shadow: 0 8px 40px rgba(108,92,231,0.5);
+  animation: bounceIn 0.6s ease;
+}
+
+.splash-text {
+  font-size: 28px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: var(--success);
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-logo">D</div>
+  <div class="splash-text">ドロマ</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">D</div>
+    <div class="logo-text">ドロマ</div>
+  </div>
+  <div class="header-right">
+    <div class="notification-btn" onclick="showToast('通知はまだありません')">
+      <span>🔔</span>
+      <div class="notification-dot"></div>
+    </div>
+    <div class="avatar" onclick="switchPage('profile')">M</div>
+  </div>
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+
+  <!-- Balance Card -->
+  <div class="balance-card">
+    <div class="balance-label">保有ポイント</div>
+    <div class="balance-amount">12,450 <span class="unit">pt</span></div>
+    <div class="balance-sub">= ¥12,450</div>
+    <div class="balance-actions">
+      <button class="balance-btn primary" onclick="switchPage('withdraw')">出金する</button>
+      <button class="balance-btn secondary" onclick="showToast('友達を招待するとお互いに500ptもらえます！')">友達招待 +500pt</button>
+    </div>
+  </div>
+
+  <!-- Daily Streak -->
+  <div class="streak-section">
+    <div class="streak-header">
+      <div class="streak-title">🔥 デイリーログイン</div>
+      <div class="streak-count">4日連続！</div>
+    </div>
+    <div class="streak-days">
+      <div class="streak-day">
+        <div class="streak-day-label">月</div>
+        <div class="streak-day-circle done">✓</div>
+        <div class="streak-day-pts">+10</div>
+      </div>
+      <div class="streak-day">
+        <div class="streak-day-label">火</div>
+        <div class="streak-day-circle done">✓</div>
+        <div class="streak-day-pts">+20</div>
+      </div>
+      <div class="streak-day">
+        <div class="streak-day-label">水</div>
+        <div class="streak-day-circle done">✓</div>
+        <div class="streak-day-pts">+30</div>
+      </div>
+      <div class="streak-day">
+        <div class="streak-day-label">木</div>
+        <div class="streak-day-circle today" onclick="claimDaily(this)">🎁</div>
+        <div class="streak-day-pts">+50</div>
+      </div>
+      <div class="streak-day">
+        <div class="streak-day-label">金</div>
+        <div class="streak-day-circle">50</div>
+        <div class="streak-day-pts">+50</div>
+      </div>
+      <div class="streak-day">
+        <div class="streak-day-label">土</div>
+        <div class="streak-day-circle">75</div>
+        <div class="streak-day-pts">+75</div>
+      </div>
+      <div class="streak-day">
+        <div class="streak-day-label">日</div>
+        <div class="streak-day-circle" style="border-color: var(--gold);">🏆</div>
+        <div class="streak-day-pts">+200</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hot Offers -->
+  <div class="section-header">
+    <div class="section-title">🔥 高額案件</div>
+    <div class="section-more" onclick="switchPage('games')">すべて見る →</div>
+  </div>
+
+  <div class="hot-offers">
+    <div class="hot-offer-card" onclick="showToast('モノポリーGO! のミッション詳細を表示します')">
+      <div class="hot-offer-img" style="background: linear-gradient(135deg, #FF6B6B, #ee5a24);">
+        <div class="hot-offer-badge">人気</div>
+        🎲
+      </div>
+      <div class="hot-offer-info">
+        <div class="hot-offer-name">モノポリーGO!</div>
+        <div class="hot-offer-reward">¥3,200 <span class="small">獲得</span></div>
+      </div>
+    </div>
+
+    <div class="hot-offer-card" onclick="showToast('Royal Match のミッション詳細を表示します')">
+      <div class="hot-offer-img" style="background: linear-gradient(135deg, #4834d4, #686de0);">
+        <div class="hot-offer-badge">NEW</div>
+        👑
+      </div>
+      <div class="hot-offer-info">
+        <div class="hot-offer-name">Royal Match</div>
+        <div class="hot-offer-reward">¥2,800 <span class="small">獲得</span></div>
+      </div>
+    </div>
+
+    <div class="hot-offer-card" onclick="showToast('Rise of Kingdoms のミッション詳細を表示します')">
+      <div class="hot-offer-img" style="background: linear-gradient(135deg, #22a6b3, #7ed6df);">
+        <div class="hot-offer-badge">高額</div>
+        ⚔️
+      </div>
+      <div class="hot-offer-info">
+        <div class="hot-offer-name">Rise of Kingdoms</div>
+        <div class="hot-offer-reward">¥5,500 <span class="small">獲得</span></div>
+      </div>
+    </div>
+
+    <div class="hot-offer-card" onclick="showToast('Coin Master のミッション詳細を表示します')">
+      <div class="hot-offer-img" style="background: linear-gradient(135deg, #f0932b, #ffbe76);">
+        🪙
+      </div>
+      <div class="hot-offer-info">
+        <div class="hot-offer-name">Coin Master</div>
+        <div class="hot-offer-reward">¥1,500 <span class="small">獲得</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jackpot -->
+  <div class="jackpot-banner" onclick="showToast('今週の抽選まであと3日！参加済みです')">
+    <div class="jackpot-label">🎰 WEEKLY JACKPOT</div>
+    <div class="jackpot-amount">¥300,000</div>
+    <div class="jackpot-sub">今週の参加者 2,847人 ・ あと3日</div>
+  </div>
+
+  <!-- Game List -->
+  <div class="section-header">
+    <div class="section-title">おすすめミッション</div>
+    <div class="section-more" onclick="switchPage('games')">すべて →</div>
+  </div>
+
+  <div class="game-list">
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">🧩</div>
+      <div class="game-info">
+        <div class="game-name">パズル&サバイバル</div>
+        <div class="game-desc">城レベル15到達でポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag">パズル</span>
+          <span class="game-tag time">⏱ 約3日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥4,200</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #00b894, #55efc4);">🏰</div>
+      <div class="game-info">
+        <div class="game-name">ロードモバイル</div>
+        <div class="game-desc">城レベル17到達でポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag">戦略</span>
+          <span class="game-tag time">⏱ 約5日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥6,000</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #fd79a8, #e84393);">🍬</div>
+      <div class="game-info">
+        <div class="game-name">キャンディクラッシュ</div>
+        <div class="game-desc">レベル100クリアでポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag easy">かんたん</span>
+          <span class="game-tag time">⏱ 約2日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥1,200</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #fdcb6e, #f39c12);">📱</div>
+      <div class="game-info">
+        <div class="game-name">アンケート回答</div>
+        <div class="game-desc">5分のアンケートに回答するだけ</div>
+        <div class="game-meta">
+          <span class="game-tag easy">かんたん</span>
+          <span class="game-tag time">⏱ 5分</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥150</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini Ranking -->
+  <div class="section-header">
+    <div class="section-title">🏆 今週のランキング</div>
+    <div class="section-more" onclick="switchPage('ranking')">すべて →</div>
+  </div>
+
+  <div class="ranking-section">
+    <div class="ranking-item">
+      <div class="ranking-num gold">1</div>
+      <div class="ranking-avatar" style="background: linear-gradient(135deg, #f9ca24, #f0932b);">👸</div>
+      <div class="ranking-name">ゆうき★</div>
+      <div class="ranking-pts">¥128,400</div>
+    </div>
+    <div class="ranking-item">
+      <div class="ranking-num silver">2</div>
+      <div class="ranking-avatar" style="background: linear-gradient(135deg, #686de0, #4834d4);">🐺</div>
+      <div class="ranking-name">GameMaster</div>
+      <div class="ranking-pts">¥95,200</div>
+    </div>
+    <div class="ranking-item">
+      <div class="ranking-num bronze">3</div>
+      <div class="ranking-avatar" style="background: linear-gradient(135deg, #e056fd, #be2edd);">🌸</div>
+      <div class="ranking-name">さくらんぼ</div>
+      <div class="ranking-pts">¥87,600</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== GAMES PAGE ===== -->
+<div class="page" id="page-games">
+  <div style="padding: 20px 20px 8px;">
+    <div class="section-title" style="font-size: 22px; margin-bottom: 16px;">ゲーム案件</div>
+  </div>
+
+  <div class="category-tabs">
+    <div class="category-tab active">すべて</div>
+    <div class="category-tab">🔥 高額</div>
+    <div class="category-tab">⚡ かんたん</div>
+    <div class="category-tab">🧩 パズル</div>
+    <div class="category-tab">⚔️ 戦略</div>
+    <div class="category-tab">📱 アンケート</div>
+  </div>
+
+  <div class="game-list">
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #ee5a24, #FF6B6B);">🎲</div>
+      <div class="game-info">
+        <div class="game-name">モノポリーGO!</div>
+        <div class="game-desc">サイコロ5,000回達成でポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag">ボード</span>
+          <span class="game-tag time">⏱ 約4日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥3,200</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #4834d4, #686de0);">👑</div>
+      <div class="game-info">
+        <div class="game-name">Royal Match</div>
+        <div class="game-desc">レベル500クリアでポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag">パズル</span>
+          <span class="game-tag time">⏱ 約7日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥2,800</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #22a6b3, #7ed6df);">⚔️</div>
+      <div class="game-info">
+        <div class="game-name">Rise of Kingdoms</div>
+        <div class="game-desc">市庁舎レベル21到達</div>
+        <div class="game-meta">
+          <span class="game-tag">戦略</span>
+          <span class="game-tag time">⏱ 約14日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥5,500</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">🧩</div>
+      <div class="game-info">
+        <div class="game-name">パズル&サバイバル</div>
+        <div class="game-desc">城レベル15到達でポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag">パズル</span>
+          <span class="game-tag time">⏱ 約3日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥4,200</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #00b894, #55efc4);">🏰</div>
+      <div class="game-info">
+        <div class="game-name">ロードモバイル</div>
+        <div class="game-desc">城レベル17到達でポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag">戦略</span>
+          <span class="game-tag time">⏱ 約5日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥6,000</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #fd79a8, #e84393);">🍬</div>
+      <div class="game-info">
+        <div class="game-name">キャンディクラッシュ</div>
+        <div class="game-desc">レベル100クリアでポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag easy">かんたん</span>
+          <span class="game-tag time">⏱ 約2日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥1,200</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #fdcb6e, #f39c12);">📱</div>
+      <div class="game-info">
+        <div class="game-name">アンケート回答</div>
+        <div class="game-desc">5分のアンケートに回答するだけ</div>
+        <div class="game-meta">
+          <span class="game-tag easy">かんたん</span>
+          <span class="game-tag time">⏱ 5分</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥150</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon" style="background: linear-gradient(135deg, #c44569, #cf6a87);">🃏</div>
+      <div class="game-info">
+        <div class="game-name">ソリティア Grand</div>
+        <div class="game-desc">30ゲームクリアでポイント獲得</div>
+        <div class="game-meta">
+          <span class="game-tag easy">かんたん</span>
+          <span class="game-tag time">⏱ 約1日</span>
+        </div>
+      </div>
+      <div class="game-reward">
+        <div class="game-reward-amount">¥800</div>
+        <div class="game-reward-label">獲得</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RANKING PAGE ===== -->
+<div class="page" id="page-ranking">
+  <div style="padding: 20px 20px 0;">
+    <div class="section-title" style="font-size: 22px;">🏆 ランキング</div>
+    <p style="color: var(--text-sub); font-size: 13px; margin-top: 4px;">今週のトップ稼ぎプレイヤー</p>
+  </div>
+
+  <div class="ranking-podium">
+    <div class="podium-item">
+      <div class="podium-rank" style="background: rgba(192,192,192,0.2); color: #C0C0C0;">2nd</div>
+      <div class="podium-avatar" style="background: linear-gradient(135deg, #686de0, #4834d4);">🐺</div>
+      <div class="podium-name">GameMaster</div>
+      <div class="podium-pts">¥95,200</div>
+    </div>
+    <div class="podium-item">
+      <div class="podium-rank" style="background: rgba(255,215,0,0.2); color: var(--gold);">👑 1st</div>
+      <div class="podium-avatar" style="background: linear-gradient(135deg, #f9ca24, #f0932b);">👸</div>
+      <div class="podium-name">ゆうき★</div>
+      <div class="podium-pts">¥128,400</div>
+    </div>
+    <div class="podium-item">
+      <div class="podium-rank" style="background: rgba(205,127,50,0.2); color: #CD7F32;">3rd</div>
+      <div class="podium-avatar" style="background: linear-gradient(135deg, #e056fd, #be2edd);">🌸</div>
+      <div class="podium-name">さくらんぼ</div>
+      <div class="podium-pts">¥87,600</div>
+    </div>
+  </div>
+
+  <div class="ranking-section">
+    <div class="ranking-item">
+      <div class="ranking-num" style="background: var(--bg); border: 1px solid var(--border);">4</div>
+      <div class="ranking-avatar" style="background: linear-gradient(135deg, #badc58, #6ab04c);">🐸</div>
+      <div class="ranking-name">カエル太郎</div>
+      <div class="ranking-pts">¥72,300</div>
+    </div>
+    <div class="ranking-item">
+      <div class="ranking-num" style="background: var(--bg); border: 1px solid var(--border);">5</div>
+      <div class="ranking-avatar" style="background: linear-gradient(135deg, #7ed6df, #22a6b3);">🌊</div>
+      <div class="ranking-name">なみのり</div>
+      <div class="ranking-pts">¥65,800</div>
+    </div>
+    <div class="ranking-item">
+      <div class="ranking-num" style="background: var(--bg); border: 1px solid var(--border);">6</div>
+      <div class="ranking-avatar" style="background: linear-gradient(135deg, #ff7979, #eb4d4b);">🎮</div>
+      <div class="ranking-name">ゲーマーZ</div>
+      <div class="ranking-pts">¥58,400</div>
+    </div>
+    <div class="ranking-item">
+      <div class="ranking-num" style="background: var(--bg); border: 1px solid var(--border);">7</div>
+      <div class="ranking-avatar" style="background: linear-gradient(135deg, #f8a5c2, #f78fb3);">🐱</div>
+      <div class="ranking-name">にゃんこ先生</div>
+      <div class="ranking-pts">¥51,200</div>
+    </div>
+    <div class="ranking-item" style="background: rgba(108,92,231,0.1); border-radius: 12px; padding: 10px 12px; border: 1px solid var(--primary);">
+      <div class="ranking-num" style="background: var(--primary);">42</div>
+      <div class="ranking-avatar" style="background: linear-gradient(135deg, #FF6B6B, #FFA07A);">M</div>
+      <div class="ranking-name">あなた</div>
+      <div class="ranking-pts">¥12,450</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== WITHDRAW PAGE ===== -->
+<div class="page" id="page-withdraw">
+  <div style="padding: 20px 20px 8px;">
+    <div class="section-title" style="font-size: 22px; margin-bottom: 4px;">出金</div>
+    <p style="color: var(--text-sub); font-size: 13px; margin-bottom: 20px;">保有ポイント: <span style="color: var(--gold); font-weight: 800;">12,450 pt</span> (= ¥12,450)</p>
+  </div>
+
+  <div class="withdraw-options">
+    <div class="withdraw-card" onclick="showToast('PayPayへの出金手続きを開始します')">
+      <div class="withdraw-icon">💚</div>
+      <div class="withdraw-name">PayPay</div>
+      <div class="withdraw-min">最低 ¥300〜</div>
+      <div class="withdraw-speed">⚡ 即時</div>
+    </div>
+    <div class="withdraw-card" onclick="showToast('PayPalへの出金手続きを開始します')">
+      <div class="withdraw-icon">💙</div>
+      <div class="withdraw-name">PayPal</div>
+      <div class="withdraw-min">最低 ¥500〜</div>
+      <div class="withdraw-speed">⚡ 即時</div>
+    </div>
+    <div class="withdraw-card" onclick="showToast('Amazonギフトの交換手続きを開始します')">
+      <div class="withdraw-icon">🛒</div>
+      <div class="withdraw-name">Amazonギフト</div>
+      <div class="withdraw-min">最低 ¥500〜</div>
+      <div class="withdraw-speed">⚡ 即時</div>
+    </div>
+    <div class="withdraw-card" onclick="showToast('銀行振込の手続きを開始します')">
+      <div class="withdraw-icon">🏦</div>
+      <div class="withdraw-name">銀行振込</div>
+      <div class="withdraw-min">最低 ¥1,000〜</div>
+      <div class="withdraw-speed">2〜3営業日</div>
+    </div>
+    <div class="withdraw-card" onclick="showToast('ビットコインへの出金手続きを開始します')">
+      <div class="withdraw-icon">₿</div>
+      <div class="withdraw-name">ビットコイン</div>
+      <div class="withdraw-min">最低 ¥100〜</div>
+      <div class="withdraw-speed">⚡ 即時</div>
+    </div>
+    <div class="withdraw-card" onclick="showToast('App Store &amp; iTunes ギフトの交換手続きを開始します')">
+      <div class="withdraw-icon">🍎</div>
+      <div class="withdraw-name">iTunesギフト</div>
+      <div class="withdraw-min">最低 ¥500〜</div>
+      <div class="withdraw-speed">⚡ 即時</div>
+    </div>
+  </div>
+
+  <div style="padding: 0 20px;">
+    <div class="section-title" style="font-size: 16px; margin-bottom: 12px;">出金履歴</div>
+    <div style="background: var(--bg-card); border-radius: 14px; padding: 16px; border: 1px solid var(--border);">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 12px;">
+        <div>
+          <div style="font-size: 14px; font-weight: 700;">PayPay</div>
+          <div style="font-size: 11px; color: var(--text-sub);">2026/03/17 14:32</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 16px; font-weight: 800; color: var(--success);">¥5,000</div>
+          <div style="font-size: 10px; color: var(--success);">完了</div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-size: 14px; font-weight: 700;">Amazonギフト</div>
+          <div style="font-size: 11px; color: var(--text-sub);">2026/03/10 09:15</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 16px; font-weight: 800; color: var(--success);">¥3,000</div>
+          <div style="font-size: 10px; color: var(--success);">完了</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PROFILE PAGE ===== -->
+<div class="page" id="page-profile">
+  <div class="profile-header">
+    <div class="profile-avatar">M</div>
+    <div class="profile-name">みつの</div>
+    <div class="profile-level">Lv.12 ゴールドプレイヤー</div>
+  </div>
+
+  <div class="profile-stats">
+    <div class="profile-stat">
+      <div class="profile-stat-num">¥12,450</div>
+      <div class="profile-stat-label">保有ポイント</div>
+    </div>
+    <div class="profile-stat">
+      <div class="profile-stat-num">¥48,200</div>
+      <div class="profile-stat-label">累計獲得</div>
+    </div>
+    <div class="profile-stat">
+      <div class="profile-stat-num">23</div>
+      <div class="profile-stat-label">完了ミッション</div>
+    </div>
+  </div>
+
+  <div class="profile-menu">
+    <div class="profile-menu-item" onclick="showToast('招待コード: DOROMA-M1234')">
+      <div class="profile-menu-icon">🎁</div>
+      <div class="profile-menu-text">友達を招待する（+500pt）</div>
+      <div class="profile-menu-arrow">→</div>
+    </div>
+    <div class="profile-menu-item" onclick="switchPage('withdraw')">
+      <div class="profile-menu-icon">💰</div>
+      <div class="profile-menu-text">出金する</div>
+      <div class="profile-menu-arrow">→</div>
+    </div>
+    <div class="profile-menu-item">
+      <div class="profile-menu-icon">📊</div>
+      <div class="profile-menu-text">獲得履歴</div>
+      <div class="profile-menu-arrow">→</div>
+    </div>
+    <div class="profile-menu-item">
+      <div class="profile-menu-icon">⚙️</div>
+      <div class="profile-menu-text">設定</div>
+      <div class="profile-menu-arrow">→</div>
+    </div>
+    <div class="profile-menu-item">
+      <div class="profile-menu-icon">❓</div>
+      <div class="profile-menu-text">ヘルプ・お問い合わせ</div>
+      <div class="profile-menu-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="nav-item active" data-page="home" onclick="switchPage('home')">
+    <div class="nav-item-icon">🏠</div>
+    <div class="nav-item-label">ホーム</div>
+  </div>
+  <div class="nav-item" data-page="games" onclick="switchPage('games')">
+    <div class="nav-item-icon">🎮</div>
+    <div class="nav-item-label">ゲーム</div>
+  </div>
+  <div class="nav-item" data-page="ranking" onclick="switchPage('ranking')">
+    <div class="nav-item-icon">🏆</div>
+    <div class="nav-item-label">ランキング</div>
+  </div>
+  <div class="nav-item" data-page="withdraw" onclick="switchPage('withdraw')">
+    <div class="nav-item-icon">💰</div>
+    <div class="nav-item-label">出金</div>
+  </div>
+  <div class="nav-item" data-page="profile" onclick="switchPage('profile')">
+    <div class="nav-item-icon">👤</div>
+    <div class="nav-item-label">マイページ</div>
+  </div>
+</div>
+
+<script>
+// Splash screen
+setTimeout(() => {
+  document.getElementById('splash').classList.add('hide');
+}, 1200);
+
+// Page switching
+function switchPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navItem = document.querySelector(`.nav-item[data-page="${pageId}"]`);
+  if (navItem) navItem.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// Toast
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// Daily claim
+function claimDaily(el) {
+  if (el.classList.contains('done')) return;
+  el.classList.remove('today');
+  el.classList.add('done');
+  el.textContent = '✓';
+  showToast('+50pt ログインボーナス獲得！🎉');
+
+  // Update balance
+  const balAmount = document.querySelector('.balance-amount');
+  balAmount.innerHTML = '12,500 <span class="unit">pt</span>';
+  document.querySelector('.balance-sub').textContent = '= ¥12,500';
+}
+
+// Category tab switching
+document.querySelectorAll('.category-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

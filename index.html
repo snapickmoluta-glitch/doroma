@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ドロマ - ゲームで稼ぐ、新しいポイ活</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #6C5CE7;
+  --primary-dark: #5A4BD1;
+  --primary-light: #A29BFE;
+  --accent: #00D2D3;
+  --accent-glow: #00F5F5;
+  --gold: #FFD700;
+  --bg: #0A0A14;
+  --bg-section: #0F0F1A;
+  --bg-card: #16162A;
+  --bg-card-hover: #1E1E38;
+  --text: #FFFFFF;
+  --text-sub: #8B8BA7;
+  --success: #00E676;
+  --danger: #FF5252;
+  --border: rgba(255,255,255,0.06);
+  --max-w: 1200px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 40px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,10,20,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  color: white;
+  box-shadow: 0 4px 15px rgba(108,92,231,0.4);
+}
+
+.nav-logo-text {
+  font-size: 24px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #fff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--text-sub);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.nav-link:hover { color: white; }
+
+.nav-cta {
+  padding: 10px 28px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(108,92,231,0.4);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.nav-hamburger span {
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 40px 80px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(108,92,231,0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0,210,211,0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(108,92,231,0.15);
+  border: 1px solid rgba(108,92,231,0.3);
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-light);
+  margin-bottom: 24px;
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--gold), #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: var(--text-sub);
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.btn-primary {
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(108,92,231,0.4);
+}
+
+.btn-secondary {
+  padding: 16px 32px;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.05);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.hero-stat-num {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+/* Hero Phone Mockup */
+.hero-phone {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.phone-frame {
+  width: 300px;
+  height: 620px;
+  background: var(--bg-card);
+  border-radius: 40px;
+  border: 3px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(108,92,231,0.15);
+  position: relative;
+}
+
+.phone-frame iframe {
+  width: 430px;
+  height: 932px;
+  border: none;
+  transform: scale(0.697);
+  transform-origin: top left;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 28px;
+  background: var(--bg-card);
+  border-radius: 0 0 16px 16px;
+  z-index: 10;
+}
+
+.phone-float-card {
+  position: absolute;
+  padding: 14px 20px;
+  background: rgba(22,22,42,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  animation: float 3s ease-in-out infinite;
+}
+
+.phone-float-card.card-1 {
+  top: 60px;
+  right: -40px;
+}
+
+.phone-float-card.card-2 {
+  bottom: 100px;
+  left: -50px;
+  animation-delay: 1.5s;
+}
+
+.float-card-amount {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--success);
+}
+
+.float-card-label {
+  font-size: 11px;
+  color: var(--text-sub);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ===== SECTIONS COMMON ===== */
+section {
+  padding: 100px 40px;
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-heading {
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.section-desc {
+  font-size: 17px;
+  color: var(--text-sub);
+  max-width: 600px;
+  margin-bottom: 50px;
+}
+
+/* ===== HOW IT WORKS ===== */
+.how-section { background: var(--bg-section); }
+
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.how-step {
+  padding: 40px 32px;
+  background: var(--bg-card);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.how-step:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.how-step-num {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.how-step-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.how-step h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.how-step p {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.8;
+}
+
+/* ===== OFFERS SECTION ===== */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.offer-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.offer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  border-color: rgba(108,92,231,0.3);
+}
+
+.offer-img {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  position: relative;
+}
+
+.offer-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.offer-badge.hot { background: var(--danger); }
+.offer-badge.new { background: var(--primary); }
+.offer-badge.easy { background: var(--success); color: #000; }
+
+.offer-info {
+  padding: 18px;
+}
+
+.offer-name {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.offer-desc {
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-bottom: 12px;
+}
+
+.offer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.offer-reward {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.offer-time {
+  font-size: 12px;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ===== PAYOUT SECTION ===== */
+.payout-section { background: var(--bg-section); }
+
+.payout-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.payout-card {
+  padding: 28px 16px;
+  background: var(--bg-card);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.payout-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+}
+
+.payout-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.payout-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.payout-min {
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-bottom: 8px;
+}
+
+.payout-speed {
+  display: inline-block;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(0,230,118,0.1);
+  color: var(--success);
+  font-weight: 700;
+}
+
+.payout-highlight {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(0,210,211,0.1));
+  border-radius: 18px;
+  border: 1px solid rgba(108,92,231,0.2);
+}
+
+.payout-highlight-num {
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.payout-highlight-label {
+  font-size: 16px;
+  color: var(--text-sub);
+  margin-top: 4px;
+}
+
+/* ===== TRUST SECTION ===== */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.trust-card {
+  padding: 32px 24px;
+  background: var(--bg-card);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.trust-num {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.trust-num.purple { color: var(--primary-light); }
+.trust-num.green { color: var(--success); }
+.trust-num.gold { color: var(--gold); }
+.trust-num.cyan { color: var(--accent); }
+
+.trust-label {
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+/* ===== REVIEWS ===== */
+.reviews-section { background: var(--bg-section); }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.review-card {
+  padding: 28px;
+  background: var(--bg-card);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+}
+
+.review-stars {
+  color: var(--gold);
+  font-size: 18px;
+  margin-bottom: 14px;
+  letter-spacing: 2px;
+}
+
+.review-text {
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 18px;
+  color: rgba(255,255,255,0.85);
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.review-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.review-earned {
+  font-size: 12px;
+  color: var(--success);
+}
+
+/* ===== FAQ ===== */
+.faq-list {
+  max-width: 800px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.faq-q:hover { color: var(--accent); }
+
+.faq-arrow {
+  font-size: 20px;
+  color: var(--text-sub);
+  transition: transform 0.3s;
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.9;
+}
+
+.faq-item.open .faq-a {
+  max-height: 200px;
+  padding-bottom: 24px;
+}
+
+.faq-item.open .faq-arrow {
+  transform: rotate(45deg);
+}
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg), var(--bg-section));
+}
+
+.cta-box {
+  padding: 60px;
+  background: linear-gradient(135deg, var(--primary), #8B5CF6, var(--accent));
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+
+.cta-box h2 {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.cta-box p {
+  font-size: 17px;
+  opacity: 0.85;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.cta-btn {
+  padding: 18px 48px;
+  background: white;
+  color: var(--primary);
+  border: none;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 60px 40px 40px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.footer-desc {
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.footer h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.footer a {
+  display: block;
+  color: var(--text-sub);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+
+.footer a:hover { color: white; }
+
+.footer-bottom {
+  max-width: var(--max-w);
+  margin: 40px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .offers-grid { grid-template-columns: repeat(2, 1fr); }
+  .payout-grid { grid-template-columns: repeat(3, 1fr); }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  section { padding: 60px 20px; }
+
+  .hero { padding: 100px 20px 60px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 32px; }
+  .hero-desc { font-size: 15px; }
+  .hero-actions { justify-content: center; flex-wrap: wrap; }
+  .hero-stats { justify-content: center; }
+  .hero-phone { order: -1; }
+  .phone-frame { width: 240px; height: 500px; }
+  .phone-frame iframe { transform: scale(0.558); }
+  .phone-float-card { display: none; }
+
+  .section-heading { font-size: 28px; }
+  .section-desc { font-size: 15px; }
+
+  .how-steps { grid-template-columns: 1fr; }
+  .offers-grid { grid-template-columns: 1fr; }
+  .payout-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .cta-box { padding: 40px 24px; }
+  .cta-box h2 { font-size: 24px; }
+
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">D</div>
+    <div class="nav-logo-text">ドロマ</div>
+  </a>
+  <div class="nav-links">
+    <a href="#how" class="nav-link">はじめ方</a>
+    <a href="#offers" class="nav-link">案件一覧</a>
+    <a href="#payout" class="nav-link">出金方法</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#" class="nav-cta">無料で始める</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        今すぐ始められる
+      </div>
+      <h1>ゲームするだけで<br><span class="gradient">お金が稼げる。</span></h1>
+      <p class="hero-desc">
+        好きなゲームをプレイするだけでポイントが貯まる。<br>
+        貯まったポイントはPayPayやAmazonギフトに即時交換。<br>
+        新しい形のポイ活、始めませんか？
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">無料で始める →</a>
+        <a href="#how" class="btn-secondary">仕組みを見る</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">500万+</div>
+          <div class="hero-stat-label">登録ユーザー</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">3億円+</div>
+          <div class="hero-stat-label">累計支払額</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">即時</div>
+          <div class="hero-stat-label">出金スピード</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-phone">
+      <div class="phone-float-card card-1">
+        <div class="float-card-amount">+¥3,200</div>
+        <div class="float-card-label">モノポリーGO! クリア!</div>
+      </div>
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <iframe src="app.html" loading="lazy"></iframe>
+      </div>
+      <div class="phone-float-card card-2">
+        <div class="float-card-amount">+¥5,500</div>
+        <div class="float-card-label">Rise of Kingdoms 達成!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <h2 class="section-heading">3ステップで簡単スタート</h2>
+    <p class="section-desc">面倒な手続きは一切なし。アカウント作成から稼ぎ始めるまで1分。</p>
+
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <span class="how-step-icon">📱</span>
+        <h3>無料登録</h3>
+        <p>メールアドレスまたはSNSアカウントで30秒で登録完了。本人確認は出金時だけでOK。</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <span class="how-step-icon">🎮</span>
+        <h3>ゲームをプレイ</h3>
+        <p>好きなゲームを選んでプレイ。ミッション達成条件を満たすとポイントが自動付与されます。</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <span class="how-step-icon">💰</span>
+        <h3>即時出金</h3>
+        <p>¥300からPayPayに即時出金可能。Amazon、PayPal、ビットコインにも対応。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section id="offers">
+  <div class="section-inner">
+    <div class="section-label">Popular offers</div>
+    <h2 class="section-heading">人気のゲーム案件</h2>
+    <p class="section-desc">ゲームをプレイして条件を達成するだけ。最高¥6,000以上稼げる案件も。</p>
+
+    <div class="offers-grid">
+      <div class="offer-card">
+        <div class="offer-img" style="background: linear-gradient(135deg, #FF6B6B, #ee5a24);">
+          <div class="offer-badge hot">人気No.1</div>
+          🎲
+        </div>
+        <div class="offer-info">
+          <div class="offer-name">モノポリーGO!</div>
+          <div class="offer-desc">サイコロ5,000回達成</div>
+          <div class="offer-bottom">
+            <div class="offer-reward">¥3,200</div>
+            <div class="offer-time">⏱ 約4日</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-img" style="background: linear-gradient(135deg, #22a6b3, #7ed6df);">
+          <div class="offer-badge hot">高額</div>
+          ⚔️
+        </div>
+        <div class="offer-info">
+          <div class="offer-name">Rise of Kingdoms</div>
+          <div class="offer-desc">市庁舎レベル21到達</div>
+          <div class="offer-bottom">
+            <div class="offer-reward">¥5,500</div>
+            <div class="offer-time">⏱ 約14日</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-img" style="background: linear-gradient(135deg, #00b894, #55efc4);">
+          <div class="offer-badge new">NEW</div>
+          🏰
+        </div>
+        <div class="offer-info">
+          <div class="offer-name">ロードモバイル</div>
+          <div class="offer-desc">城レベル17到達</div>
+          <div class="offer-bottom">
+            <div class="offer-reward">¥6,000</div>
+            <div class="offer-time">⏱ 約5日</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-img" style="background: linear-gradient(135deg, #fd79a8, #e84393);">
+          <div class="offer-badge easy">かんたん</div>
+          🍬
+        </div>
+        <div class="offer-info">
+          <div class="offer-name">キャンディクラッシュ</div>
+          <div class="offer-desc">レベル100クリア</div>
+          <div class="offer-bottom">
+            <div class="offer-reward">¥1,200</div>
+            <div class="offer-time">⏱ 約2日</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYOUT -->
+<section class="payout-section" id="payout">
+  <div class="section-inner">
+    <div class="section-label">Instant payout</div>
+    <h2 class="section-heading">選べる出金方法、すべて即時</h2>
+    <p class="section-desc">業界最速の出金スピード。PayPayなら¥300から即時出金。</p>
+
+    <div class="payout-grid">
+      <div class="payout-card">
+        <div class="payout-icon">💚</div>
+        <div class="payout-name">PayPay</div>
+        <div class="payout-min">¥300〜</div>
+        <div class="payout-speed">即時</div>
+      </div>
+      <div class="payout-card">
+        <div class="payout-icon">💙</div>
+        <div class="payout-name">PayPal</div>
+        <div class="payout-min">¥500〜</div>
+        <div class="payout-speed">即時</div>
+      </div>
+      <div class="payout-card">
+        <div class="payout-icon">🛒</div>
+        <div class="payout-name">Amazonギフト</div>
+        <div class="payout-min">¥500〜</div>
+        <div class="payout-speed">即時</div>
+      </div>
+      <div class="payout-card">
+        <div class="payout-icon">🏦</div>
+        <div class="payout-name">銀行振込</div>
+        <div class="payout-min">¥1,000〜</div>
+        <div class="payout-speed">2〜3日</div>
+      </div>
+      <div class="payout-card">
+        <div class="payout-icon">₿</div>
+        <div class="payout-name">ビットコイン</div>
+        <div class="payout-min">¥100〜</div>
+        <div class="payout-speed">即時</div>
+      </div>
+      <div class="payout-card">
+        <div class="payout-icon">🍎</div>
+        <div class="payout-name">iTunesギフト</div>
+        <div class="payout-min">¥500〜</div>
+        <div class="payout-speed">即時</div>
+      </div>
+    </div>
+
+    <div class="payout-highlight">
+      <div class="payout-highlight-num">3億円+</div>
+      <div class="payout-highlight-label">これまでにユーザーへ支払った総額</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">Trust & safety</div>
+    <h2 class="section-heading">数字が証明する信頼性</h2>
+    <p class="section-desc">安心して使える。それがドロマの約束です。</p>
+
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-num purple">500万+</div>
+        <div class="trust-label">登録ユーザー数</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num gold">4.8</div>
+        <div class="trust-label">ユーザー評価（5点満点）</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num green">99.7%</div>
+        <div class="trust-label">出金成功率</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num cyan">5分</div>
+        <div class="trust-label">平均出金時間</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="section-inner">
+    <div class="section-label">User reviews</div>
+    <h2 class="section-heading">ユーザーの声</h2>
+    <p class="section-desc">実際に使っているユーザーのリアルな声をお届けします。</p>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">通学中にゲームしてるだけでお小遣いが増える。先月はPayPayに8,000円分交換できました。マジで神アプリ。</div>
+        <div class="review-author">
+          <div class="review-avatar" style="background: linear-gradient(135deg, #fd79a8, #e84393);">🎀</div>
+          <div>
+            <div class="review-name">ゆいな（19歳・大学生）</div>
+            <div class="review-earned">累計 ¥32,400 獲得</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">他のポイ活サイトと比べて出金が爆速。PayPayに300円から即出金できるのが最高。UIもおしゃれで使いやすい。</div>
+        <div class="review-author">
+          <div class="review-avatar" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">🎮</div>
+          <div>
+            <div class="review-name">たくや（24歳・会社員）</div>
+            <div class="review-earned">累計 ¥56,800 獲得</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <div class="review-text">子供が寝た後にコツコツやってます。高額案件は時間かかるけど、アンケートとかでスキマ時間に稼げるのがいい。</div>
+        <div class="review-author">
+          <div class="review-avatar" style="background: linear-gradient(135deg, #00b894, #55efc4);">🌿</div>
+          <div>
+            <div class="review-name">まき（31歳・主婦）</div>
+            <div class="review-earned">累計 ¥21,200 獲得</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-heading">よくある質問</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          本当に無料で使えますか？
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a">はい、完全無料です。登録料・月額料・手数料は一切かかりません。ゲーム会社からの広告費がユーザーへの報酬の原資となっているため、ユーザーの負担はゼロです。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          どうやって稼ぐ仕組みですか？
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a">ゲーム会社が新規ユーザーを獲得するためにドロマに広告費を支払います。その広告費の一部をポイントとしてユーザーに還元する仕組みです。ユーザーはゲームをプレイするだけで報酬を得ることができます。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          出金はどのくらいで届きますか？
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a">PayPay・PayPal・Amazonギフト・暗号資産は申請後即時〜5分以内に届きます。銀行振込のみ2〜3営業日かかります。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          月にいくらくらい稼げますか？
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a">利用頻度により異なりますが、1日30分程度のプレイで月3,000〜10,000円、アクティブに取り組む方は月20,000円以上稼ぐ方もいます。高額案件を中心にこなすとより効率的です。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          年齢制限はありますか？
+          <span class="faq-arrow">+</span>
+        </div>
+        <div class="faq-a">16歳以上の方であればどなたでもご利用いただけます。18歳未満の方は保護者の同意が必要です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="cta-box">
+      <h2>ゲームで稼ぐ、始めよう。</h2>
+      <p>登録は30秒。今なら初回ログインで500ptプレゼント。</p>
+      <button class="cta-btn" onclick="alert('サインアップページに遷移します')">無料で始める →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <div class="nav-logo-icon" style="width: 32px; height: 32px; font-size: 18px; border-radius: 10px;">D</div>
+        <div style="font-size: 20px; font-weight: 900;">ドロマ</div>
+      </div>
+      <div class="footer-desc">ゲームするだけでお金が稼げる、新しい形のポイ活プラットフォーム。安心・安全・即時出金。</div>
+    </div>
+    <div>
+      <h4>サービス</h4>
+      <a href="#">案件一覧</a>
+      <a href="#">出金方法</a>
+      <a href="#">ランキング</a>
+      <a href="#">友達招待</a>
+    </div>
+    <div>
+      <h4>サポート</h4>
+      <a href="#">ヘルプセンター</a>
+      <a href="#">お問い合わせ</a>
+      <a href="#">利用規約</a>
+      <a href="#">プライバシーポリシー</a>
+    </div>
+    <div>
+      <h4>会社情報</h4>
+      <a href="#">運営会社</a>
+      <a href="#">採用情報</a>
+      <a href="#">広告主の方へ</a>
+      <a href="#">メディア掲載</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>&copy; 2026 ドロマ All rights reserved.</div>
+    <div>運営: Moluta Inc.</div>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  el.closest('.faq-item').classList.toggle('open');
+}
+
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  if (links.style.display === 'flex') {
+    links.style.display = 'none';
+  } else {
+    links.style.display = 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'fixed';
+    links.style.top = '72px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'rgba(10,10,20,0.98)';
+    links.style.padding = '20px';
+    links.style.gap = '16px';
+    links.style.alignItems = 'center';
+    links.style.backdropFilter = 'blur(20px)';
+    links.style.zIndex = '999';
+  }
+}
+
+// Nav background on scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(10,10,20,0.95)';
+  } else {
+    nav.style.background = 'rgba(10,10,20,0.85)';
+  }
+});
+</script>
+
+</body>
+</html>
