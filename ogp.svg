@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07071A"/>
+      <stop offset="100%" stop-color="#0C0C24"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6C5CE7"/>
+      <stop offset="100%" stop-color="#00D2D3"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Glow circles -->
+  <circle cx="900" cy="200" r="300" fill="#6C5CE7" opacity="0.06"/>
+  <circle cx="200" cy="500" r="250" fill="#00D2D3" opacity="0.05"/>
+  <!-- Logo icon -->
+  <rect x="80" y="180" width="80" height="80" rx="18" fill="url(#accent)"/>
+  <text x="120" y="237" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="48" font-weight="900" fill="#fff">D</text>
+  <!-- Logo text -->
+  <text x="180" y="237" font-family="system-ui,-apple-system,sans-serif" font-size="52" font-weight="900" fill="#fff">ドロマ</text>
+  <!-- Main headline -->
+  <text x="80" y="340" font-family="system-ui,-apple-system,sans-serif" font-size="56" font-weight="900" fill="#fff">ゲームするだけで</text>
+  <text x="80" y="410" font-family="system-ui,-apple-system,sans-serif" font-size="56" font-weight="900" fill="url(#gold)">お金になる。</text>
+  <!-- Sub text -->
+  <text x="80" y="475" font-family="system-ui,-apple-system,sans-serif" font-size="24" fill="#7A7A9E">完全無料のゲーム特化ポイ活プラットフォーム</text>
+  <!-- CTA-like badge -->
+  <rect x="80" y="510" width="240" height="50" rx="12" fill="url(#accent)"/>
+  <text x="200" y="542" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="800" fill="#fff">事前登録受付中</text>
+  <!-- Right side decorative elements -->
+  <rect x="800" y="140" width="300" height="360" rx="30" fill="#151530" stroke="#ffffff10" stroke-width="2"/>
+  <!-- Fake app screen content -->
+  <rect x="820" y="180" width="260" height="50" rx="10" fill="#1C1C42"/>
+  <text x="850" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#fff">モノポリーGO!</text>
+  <text x="1040" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900" fill="#FFD700" text-anchor="end">3,200pt</text>
+  <rect x="820" y="245" width="260" height="50" rx="10" fill="#1C1C42"/>
+  <text x="850" y="277" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#fff">Rise of Kingdoms</text>
+  <text x="1040" y="277" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900" fill="#FFD700" text-anchor="end">5,500pt</text>
+  <rect x="820" y="310" width="260" height="50" rx="10" fill="#1C1C42"/>
+  <text x="850" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#fff">ロードモバイル</text>
+  <text x="1040" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900" fill="#FFD700" text-anchor="end">6,000pt</text>
+  <rect x="820" y="375" width="260" height="50" rx="10" fill="#1C1C42"/>
+  <text x="850" y="407" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#fff">キャンディクラッシュ</text>
+  <text x="1040" y="407" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900" fill="#FFD700" text-anchor="end">1,200pt</text>
+  <!-- Bottom bar -->
+  <rect x="0" y="610" width="1200" height="20" fill="url(#accent)"/>
+</svg>

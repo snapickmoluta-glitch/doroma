@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6C5CE7"/>
+      <stop offset="50%" stop-color="#7C6CF7"/>
+      <stop offset="100%" stop-color="#00D2D3"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+    <linearGradient id="letter-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E0E0FF"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <!-- Subtle inner glow -->
+  <circle cx="350" cy="350" r="400" fill="#FFFFFF" opacity="0.05"/>
+  <!-- Letter D -->
+  <text x="512" y="660" text-anchor="middle" font-family="system-ui,-apple-system,'Helvetica Neue',sans-serif" font-size="580" font-weight="900" fill="url(#letter-shadow)" filter="url(#shadow)">D</text>
+</svg>

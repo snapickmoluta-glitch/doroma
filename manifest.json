@@ -1,0 +1,19 @@
+{
+  "name": "ドロマ - ゲームで稼ぐポイ活",
+  "short_name": "ドロマ",
+  "description": "ゲームをプレイするだけでポイントが貯まる。PayPayやAmazonギフトに交換できる新しいポイ活プラットフォーム。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07071A",
+  "theme_color": "#07071A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["lifestyle", "entertainment"],
+  "lang": "ja"
+}
