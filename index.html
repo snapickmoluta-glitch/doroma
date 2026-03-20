@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ドロマ - ゲームで稼ぐ、新しいポイ活</title>
 <meta name="description" content="ゲームをプレイするだけでポイントが貯まる。PayPayやAmazonギフトに交換できる新しいポイ活プラットフォーム。">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap');
 
@@ -114,7 +115,8 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
 .how-step{padding:36px 28px;background:linear-gradient(145deg,var(--card),rgba(21,21,48,.5));border-radius:20px;border:1px solid var(--bd);position:relative;transition:all .4s;overflow:hidden}
 .how-step::before{counter-increment:step;content:counter(step);position:absolute;top:16px;right:20px;font-size:64px;font-weight:900;color:rgba(108,92,231,.06);line-height:1;pointer-events:none}
 .how-step:hover{background:var(--card-h);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.25);border-color:rgba(108,92,231,.15)}
-.how-step-icon{width:52px;height:52px;background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(0,210,211,.08));border:1px solid rgba(108,92,231,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
+.how-step-icon{width:52px;height:52px;background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(0,210,211,.08));border:1px solid rgba(108,92,231,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--ac)}
+.how-step-icon svg{width:26px;height:26px}
 .how-step h3{font-size:18px;font-weight:800;margin-bottom:8px}
 .how-step p{font-size:13px;color:var(--tx2);line-height:1.85}
 
@@ -123,7 +125,9 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
 .offers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .offer-card{background:var(--card);border-radius:18px;overflow:hidden;border:1px solid var(--bd);transition:all .4s;cursor:pointer;position:relative}
 .offer-card:hover{transform:translateY(-5px);box-shadow:0 24px 48px rgba(0,0,0,.3);border-color:rgba(108,92,231,.2)}
-.offer-head{height:120px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+.offer-head{height:120px;display:flex;align-items:center;justify-content:center;position:relative;color:rgba(255,255,255,.9)}
+.offer-head svg{width:48px;height:48px}
+.offer-featured .offer-head svg{width:64px;height:64px}
 .offer-badge{position:absolute;top:12px;left:12px;padding:3px 10px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:.5px}
 .offer-badge.hot{background:var(--ng);color:#fff}
 .offer-badge.new{background:var(--pr);color:#fff}
@@ -149,7 +153,10 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
 .payout-list::-webkit-scrollbar{display:none}
 .payout-item{flex:0 0 160px;padding:28px 20px;background:var(--card);border-radius:18px;border:1px solid var(--bd);text-align:center;transition:all .3s}
 .payout-item:hover{background:var(--card-h);transform:translateY(-3px)}
-.payout-icon{font-size:36px;margin-bottom:10px}
+.payout-icon{margin-bottom:10px;display:flex;justify-content:center}
+.payout-icon svg{width:36px;height:36px}
+.payout-icon .pay-circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.payout-icon .pay-circle svg{width:24px;height:24px}
 .payout-name{font-size:14px;font-weight:700;margin-bottom:4px}
 .payout-min{font-size:11px;color:var(--tx2);margin-bottom:8px}
 .payout-spd{display:inline-block;font-size:10px;padding:3px 10px;border-radius:6px;background:rgba(0,230,118,.08);color:var(--ok);font-weight:700}
@@ -196,7 +203,20 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
 .cta-box h2{font-size:clamp(24px,3.5vw,38px);font-weight:900;margin-bottom:12px;position:relative;z-index:1}
 .cta-box p{font-size:clamp(14px,1.5vw,17px);opacity:.8;margin-bottom:28px;position:relative;z-index:1}
 .cta-btn{padding:16px 44px;background:#fff;color:var(--pr);border:none;border-radius:12px;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .3s;position:relative;z-index:1;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.cta-btn{overflow:hidden}
+.cta-btn::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,transparent 40%,rgba(108,92,231,.2) 50%,transparent 60%);animation:btn-shine 3s infinite}
+@keyframes btn-shine{0%{transform:translateX(-100%) rotate(45deg)}100%{transform:translateX(100%) rotate(45deg)}}
 .cta-btn:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+
+/* Lucide icon sizing in hero features */
+.hero-feat-icon svg{width:16px;height:16px;color:var(--ok)}
+
+/* Payout note icon */
+.payout-note-icon{display:flex;align-items:center}
+.payout-note-icon svg{width:28px;height:28px;color:var(--gd)}
+
+/* Offer time icon */
+.offer-time svg{width:12px;height:12px}
 
 /* ===== FOOTER ===== */
 .footer{padding:48px clamp(20px,4vw,48px) 32px;border-top:1px solid var(--bd);position:relative;z-index:2}
@@ -284,15 +304,15 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
       </div>
       <div class="hero-features reveal reveal-delay-4">
         <div class="hero-feat">
-          <div class="hero-feat-icon">✓</div>
+          <div class="hero-feat-icon"><i data-lucide="check"></i></div>
           <span>完全無料</span>
         </div>
         <div class="hero-feat">
-          <div class="hero-feat-icon">⚡</div>
+          <div class="hero-feat-icon"><i data-lucide="zap"></i></div>
           <span>即時交換</span>
         </div>
         <div class="hero-feat">
-          <div class="hero-feat-icon">🔒</div>
+          <div class="hero-feat-icon"><i data-lucide="shield-check"></i></div>
           <span>安心設計</span>
         </div>
       </div>
@@ -324,17 +344,17 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
     <p class="sec-p reveal">面倒な手続きは一切なし。アカウント登録から最短1分でスタート。</p>
     <div class="how-steps">
       <div class="how-step reveal">
-        <div class="how-step-icon">📱</div>
+        <div class="how-step-icon"><i data-lucide="smartphone"></i></div>
         <h3>無料登録</h3>
         <p>メールまたはSNSアカウントで30秒。本人確認は出金時だけでOK。</p>
       </div>
       <div class="how-step reveal reveal-delay-1">
-        <div class="how-step-icon">🎮</div>
+        <div class="how-step-icon"><i data-lucide="gamepad-2"></i></div>
         <h3>ゲームをプレイ</h3>
         <p>好きなゲームを選んでプレイ。条件を達成するとポイントが自動付与。</p>
       </div>
       <div class="how-step reveal reveal-delay-2">
-        <div class="how-step-icon">💰</div>
+        <div class="how-step-icon"><i data-lucide="coins"></i></div>
         <h3>ポイント交換</h3>
         <p>PayPay・Amazonギフト等に交換。500ptから交換可能。</p>
       </div>
@@ -354,70 +374,70 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
       <div class="offer-card offer-featured reveal">
         <div class="offer-head" style="background:linear-gradient(135deg,#FF6B6B,#ee5a24);">
           <div class="offer-badge hot">注目</div>
-          🎲
+          <i data-lucide="dice-5"></i>
         </div>
         <div class="offer-body">
           <div class="offer-name">モノポリーGO!</div>
           <div class="offer-desc">サイコロ5,000回達成で報酬ゲット。楽しみながら稼げる人気No.1案件。</div>
           <div class="offer-foot">
             <div class="offer-pts">3,200pt</div>
-            <div class="offer-time">⏱ 約4日</div>
+            <div class="offer-time"><i data-lucide="clock" style="width:12px;height:12px"></i>約4日</div>
           </div>
         </div>
       </div>
       <div class="offer-card reveal">
         <div class="offer-head" style="background:linear-gradient(135deg,#22a6b3,#7ed6df);">
           <div class="offer-badge hot">高額</div>
-          ⚔️
+          <i data-lucide="swords"></i>
         </div>
         <div class="offer-body">
           <div class="offer-name">Rise of Kingdoms</div>
           <div class="offer-desc">市庁舎レベル21到達</div>
           <div class="offer-foot">
             <div class="offer-pts">5,500pt</div>
-            <div class="offer-time">⏱ 約14日</div>
+            <div class="offer-time"><i data-lucide="clock" style="width:12px;height:12px"></i>約14日</div>
           </div>
         </div>
       </div>
       <div class="offer-card reveal reveal-delay-1">
         <div class="offer-head" style="background:linear-gradient(135deg,#00b894,#55efc4);">
           <div class="offer-badge new">NEW</div>
-          🏰
+          <i data-lucide="landmark"></i>
         </div>
         <div class="offer-body">
           <div class="offer-name">ロードモバイル</div>
           <div class="offer-desc">城レベル17到達</div>
           <div class="offer-foot">
             <div class="offer-pts">6,000pt</div>
-            <div class="offer-time">⏱ 約5日</div>
+            <div class="offer-time"><i data-lucide="clock" style="width:12px;height:12px"></i>約5日</div>
           </div>
         </div>
       </div>
       <div class="offer-card reveal">
         <div class="offer-head" style="background:linear-gradient(135deg,#a29bfe,#6c5ce7);">
           <div class="offer-badge new">NEW</div>
-          📖
+          <i data-lucide="book-open"></i>
         </div>
         <div class="offer-body">
           <div class="offer-name">comico</div>
           <div class="offer-desc">新規登録＋3話閲覧</div>
           <div class="offer-foot">
             <div class="offer-pts">500pt</div>
-            <div class="offer-time">⏱ 約10分</div>
+            <div class="offer-time"><i data-lucide="clock" style="width:12px;height:12px"></i>約10分</div>
           </div>
         </div>
       </div>
       <div class="offer-card reveal reveal-delay-1">
         <div class="offer-head" style="background:linear-gradient(135deg,#fd79a8,#e84393);">
           <div class="offer-badge easy">カンタン</div>
-          🍬
+          <i data-lucide="puzzle"></i>
         </div>
         <div class="offer-body">
           <div class="offer-name">キャンディクラッシュ</div>
           <div class="offer-desc">レベル100クリア</div>
           <div class="offer-foot">
             <div class="offer-pts">1,200pt</div>
-            <div class="offer-time">⏱ 約2日</div>
+            <div class="offer-time"><i data-lucide="clock" style="width:12px;height:12px"></i>約2日</div>
           </div>
         </div>
       </div>
@@ -435,32 +455,32 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
     <p class="sec-p reveal">500ptから交換可能。PayPay・Amazonギフトなど人気の交換先に対応。</p>
     <div class="payout-list reveal">
       <div class="payout-item">
-        <div class="payout-icon">🔴</div>
+        <div class="payout-icon"><div class="pay-circle" style="background:linear-gradient(135deg,#FF0033,#CC0029)"><i data-lucide="banknote" style="color:#fff"></i></div></div>
         <div class="payout-name">PayPay</div>
         <div class="payout-min">500pt〜</div>
         <div class="payout-spd">対応予定</div>
       </div>
       <div class="payout-item">
-        <div class="payout-icon">📦</div>
+        <div class="payout-icon"><div class="pay-circle" style="background:linear-gradient(135deg,#FF9900,#E68A00)"><i data-lucide="package" style="color:#fff"></i></div></div>
         <div class="payout-name">Amazonギフト</div>
         <div class="payout-min">500pt〜</div>
         <div class="payout-spd">対応予定</div>
       </div>
       <div class="payout-item">
-        <div class="payout-icon">🍎</div>
+        <div class="payout-icon"><div class="pay-circle" style="background:linear-gradient(135deg,#555,#333)"><i data-lucide="music" style="color:#fff"></i></div></div>
         <div class="payout-name">iTunesギフト</div>
         <div class="payout-min">500pt〜</div>
         <div class="payout-spd">対応予定</div>
       </div>
       <div class="payout-item">
-        <div class="payout-icon">▶️</div>
+        <div class="payout-icon"><div class="pay-circle" style="background:linear-gradient(135deg,#34A853,#1E8E3E)"><i data-lucide="play" style="color:#fff"></i></div></div>
         <div class="payout-name">Google Play</div>
         <div class="payout-min">500pt〜</div>
         <div class="payout-spd">対応予定</div>
       </div>
     </div>
     <div class="payout-note reveal">
-      <div class="payout-note-icon">💡</div>
+      <div class="payout-note-icon"><i data-lucide="lightbulb"></i></div>
       <div>1pt = 1円相当。交換手数料は無料。サービス正式リリース後に順次対応予定です。</div>
     </div>
   </div>
@@ -583,6 +603,9 @@ section{padding:clamp(60px,8vw,110px) clamp(20px,4vw,48px);position:relative;z-i
 </footer>
 
 <script>
+// Init Lucide icons
+lucide.createIcons();
+
 // Scroll reveal
 const obs=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
