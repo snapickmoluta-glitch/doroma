@@ -3,96 +3,397 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>プライバシーポリシー | ドロマ</title>
+<title>プライバシーポリシー | ドロマ - ゲームで稼ぐ、新しいポイ活</title>
+<meta name="description" content="ドロマのプライバシーポリシーです。個人情報の取り扱いについて説明しています。">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Noto Sans JP', sans-serif; background: #0A0A14; color: #e0e0e0; line-height: 1.9; }
-.container { max-width: 800px; margin: 0 auto; padding: 60px 24px 80px; }
-h1 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-.date { font-size: 13px; color: #8B8BA7; margin-bottom: 40px; }
-h2 { font-size: 18px; font-weight: 700; color: #fff; margin: 32px 0 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-p, li { font-size: 14px; margin-bottom: 8px; }
-ol, ul { padding-left: 24px; }
-a { color: #00D2D3; }
-.back { display: inline-block; margin-bottom: 24px; color: #00D2D3; text-decoration: none; font-size: 14px; font-weight: 600; }
-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-th, td { padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1); font-size: 13px; text-align: left; }
-th { background: rgba(255,255,255,0.05); font-weight: 600; color: #fff; }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pr:#6C5CE7;--pr-d:#5A4BD1;--pr-l:#A29BFE;
+  --ac:#00D2D3;--ac-g:#00F5F5;
+  --gd:#FFD700;--gd-d:#FFA500;
+  --bg:#07071A;--bg2:#0C0C24;--bg3:#12122E;
+  --card:#151530;--card-h:#1C1C42;
+  --tx:#FFFFFF;--tx2:#7A7A9E;
+  --ok:#00E676;--ng:#FF5252;
+  --bd:rgba(255,255,255,0.05);
+  --mw:860px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.7}
+
+/* ===== AMBIENT ===== */
+.bg-mesh{position:fixed;inset:0;pointer-events:none;z-index:0}
+.bg-mesh::before{content:'';position:absolute;top:-20%;right:-10%;width:800px;height:800px;background:radial-gradient(circle,rgba(108,92,231,0.08) 0%,transparent 70%);animation:drift 20s ease-in-out infinite}
+.bg-mesh::after{content:'';position:absolute;bottom:-10%;left:-15%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,210,211,0.06) 0%,transparent 70%);animation:drift 25s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(20px,4vw,48px);height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,7,26,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--pr),var(--ac));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;box-shadow:0 2px 12px rgba(108,92,231,.35)}
+.nav-logo-text{font-size:22px;font-weight:900;background:linear-gradient(135deg,#fff,var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--tx2);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s;display:flex;align-items:center;gap:6px}
+.nav-back:hover{color:#fff}
+
+/* ===== PAGE ===== */
+.page-wrap{position:relative;z-index:2;min-height:100vh}
+
+.legal-header{padding:120px clamp(20px,4vw,48px) 40px;text-align:center}
+.legal-header h1{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:-.5px;margin-bottom:10px}
+.legal-header .subtitle{font-size:14px;color:var(--tx2)}
+.legal-header .updated{display:inline-block;margin-top:14px;padding:6px 16px;background:rgba(108,92,231,.08);border:1px solid rgba(108,92,231,.15);border-radius:8px;font-size:12px;color:var(--pr-l);font-weight:600}
+
+.legal-body{max-width:var(--mw);margin:0 auto;padding:0 clamp(20px,4vw,48px) 80px}
+
+/* TOC */
+.legal-toc{background:var(--card);border-radius:16px;border:1px solid var(--bd);padding:28px 32px;margin-bottom:48px}
+.legal-toc h2{font-size:14px;font-weight:800;margin-bottom:14px;color:var(--ac)}
+.legal-toc ol{padding-left:20px;columns:2;column-gap:32px}
+.legal-toc li{margin-bottom:5px;break-inside:avoid}
+.legal-toc a{color:var(--tx2);text-decoration:none;font-size:13px;transition:color .2s}
+.legal-toc a:hover{color:var(--pr-l)}
+
+/* Sections */
+.legal-section{margin-bottom:40px}
+.legal-section h2{font-size:18px;font-weight:800;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--bd);color:var(--pr-l)}
+.legal-section h3{font-size:15px;font-weight:700;margin:20px 0 10px;color:rgba(255,255,255,.9)}
+.legal-section p{font-size:14px;color:rgba(255,255,255,.72);line-height:1.95;margin-bottom:12px}
+.legal-section ol,.legal-section ul{padding-left:24px;margin-bottom:16px}
+.legal-section li{font-size:14px;color:rgba(255,255,255,.72);line-height:1.95;margin-bottom:6px}
+.legal-section ul{list-style:disc}
+
+/* Table */
+.info-table{width:100%;border-collapse:collapse;margin:16px 0 20px;border-radius:12px;overflow:hidden}
+.info-table th,.info-table td{padding:12px 16px;border:1px solid var(--bd);font-size:13px;text-align:left;vertical-align:top}
+.info-table th{background:rgba(108,92,231,.08);font-weight:700;color:rgba(255,255,255,.9);white-space:nowrap;width:200px}
+.info-table td{color:rgba(255,255,255,.72)}
+
+/* Contact box */
+.contact-box{background:var(--card);border-radius:16px;border:1px solid var(--bd);padding:28px 32px;margin-top:8px}
+.contact-box p{margin-bottom:4px}
+.contact-box a{color:var(--ac);text-decoration:none;transition:opacity .2s}
+.contact-box a:hover{opacity:.8}
+
+.sep{height:1px;background:linear-gradient(90deg,transparent,rgba(108,92,231,.2) 30%,rgba(0,210,211,.2) 70%,transparent);margin:0 auto;max-width:var(--mw)}
+
+/* ===== FOOTER ===== */
+.footer{padding:48px clamp(20px,4vw,48px) 32px;border-top:1px solid var(--bd);position:relative;z-index:2}
+.footer-inner{max-width:var(--mw);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
+.footer-brand{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.footer-desc{font-size:12px;color:var(--tx2);line-height:1.8}
+.footer h4{font-size:12px;font-weight:700;margin-bottom:12px;color:var(--tx2);text-transform:uppercase;letter-spacing:1px}
+.footer a{display:block;color:var(--tx2);text-decoration:none;font-size:12px;padding:3px 0;transition:color .2s}
+.footer a:hover{color:#fff}
+.footer-btm{max-width:var(--mw);margin:32px auto 0;padding-top:20px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--tx2)}
+
+@media(max-width:768px){
+  .legal-toc{padding:20px 24px}
+  .legal-toc ol{columns:1}
+  .info-table th{width:120px}
+  .contact-box{padding:20px 24px}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-btm{flex-direction:column;gap:8px;text-align:center}
+}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="index.html" class="back">← トップに戻る</a>
-<h1>プライバシーポリシー</h1>
-<p class="date">制定日：2026年3月20日</p>
 
-<p>Moluta Inc.（以下「当社」）は、ポイ活プラットフォーム「ドロマ」（以下「本サービス」）における個人情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
+<div class="bg-mesh"></div>
+<div class="noise"></div>
 
-<h2>1. 収集する情報</h2>
-<p>当社は、本サービスの提供にあたり、以下の情報を収集します。</p>
-<table>
-<tr><th>情報の種類</th><th>収集目的</th></tr>
-<tr><td>メールアドレス</td><td>アカウント管理・連絡</td></tr>
-<tr><td>ニックネーム</td><td>サービス内での表示</td></tr>
-<tr><td>生年月日（年齢確認用）</td><td>年齢制限の確認</td></tr>
-<tr><td>ポイント取得・交換履歴</td><td>サービス提供・不正防止</td></tr>
-<tr><td>端末情報（OS、ブラウザ等）</td><td>サービス改善・不正防止</td></tr>
-<tr><td>IPアドレス</td><td>不正防止・セキュリティ</td></tr>
-<tr><td>Cookie・アクセスログ</td><td>サービス改善・分析</td></tr>
-</table>
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">D</div>
+    <div class="nav-logo-text">ドロマ</div>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    トップに戻る
+  </a>
+</nav>
 
-<h2>2. 利用目的</h2>
-<p>収集した個人情報は、以下の目的で利用します。</p>
-<ol>
-<li>本サービスの提供・運営</li>
-<li>ポイントの付与・管理・交換処理</li>
-<li>ユーザーサポート・お問い合わせ対応</li>
-<li>不正利用の検知・防止</li>
-<li>サービスの改善・新機能の開発</li>
-<li>利用状況の統計・分析（個人を特定しない形で）</li>
-<li>重要なお知らせ・規約変更等の通知</li>
-</ol>
+<div class="page-wrap">
 
-<h2>3. 第三者への提供</h2>
-<p>当社は、以下の場合を除き、個人情報を第三者に提供しません。</p>
-<ol>
-<li>ユーザーの同意がある場合</li>
-<li>法令に基づく場合</li>
-<li>人の生命・身体・財産の保護のために必要な場合</li>
-<li>ポイント交換先（PayPay、Amazon等）への必要最小限の情報提供</li>
-<li>オファー達成の確認のために広告主への必要最小限の情報提供（端末識別子等、氏名・メールアドレスは含みません）</li>
-</ol>
-
-<h2>4. 外部サービスの利用</h2>
-<p>本サービスでは以下の外部サービスを利用しています。各サービスのプライバシーポリシーもご確認ください。</p>
-<ul>
-<li>Google Analytics（アクセス解析）</li>
-<li>オファーウォールSDK（MAF MyChips、SKYFLAG等）</li>
-<li>PayPay（ポイント交換）</li>
-</ul>
-
-<h2>5. Cookieの使用</h2>
-<p>本サービスでは、サービスの提供・改善のためにCookieを使用しています。ブラウザの設定によりCookieを無効にすることも可能ですが、一部の機能が利用できなくなる場合があります。</p>
-
-<h2>6. 安全管理措置</h2>
-<p>当社は、個人情報の漏洩、滅失、毀損の防止のため、適切な安全管理措置を講じます。</p>
-
-<h2>7. 個人情報の開示・訂正・削除</h2>
-<p>ユーザーは、当社に対して個人情報の開示・訂正・削除を請求することができます。ご希望の場合は、下記お問い合わせ先までご連絡ください。</p>
-
-<h2>8. 本ポリシーの変更</h2>
-<p>当社は、必要に応じて本ポリシーを変更することがあります。変更後のポリシーは、本サービス上に掲載した時点から効力を生じます。</p>
-
-<h2>9. お問い合わせ</h2>
-<p>個人情報の取り扱いに関するお問い合わせは、下記までご連絡ください。</p>
-<p>
-Moluta Inc.<br>
-〒150-0001 東京都渋谷区神宮前六丁目23番4号 桑野ビル2階<br>
-Email: moluta0329@gmail.com
-</p>
-
-<p style="margin-top: 40px; color: #8B8BA7; font-size: 13px;">以上</p>
+<!-- HEADER -->
+<div class="legal-header">
+  <h1>プライバシーポリシー</h1>
+  <div class="subtitle">個人情報の取り扱いについて</div>
+  <div class="updated">最終更新日：2026年3月20日</div>
 </div>
+
+<!-- BODY -->
+<div class="legal-body">
+
+<!-- 目次 -->
+<div class="legal-toc">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#s1">基本方針</a></li>
+    <li><a href="#s2">収集する情報</a></li>
+    <li><a href="#s3">利用目的</a></li>
+    <li><a href="#s4">第三者への提供</a></li>
+    <li><a href="#s5">業務委託先への提供</a></li>
+    <li><a href="#s6">外部サービスの利用</a></li>
+    <li><a href="#s7">Cookieおよびトラッキング技術</a></li>
+    <li><a href="#s8">データの保持期間</a></li>
+    <li><a href="#s9">安全管理措置</a></li>
+    <li><a href="#s10">ユーザーの権利</a></li>
+    <li><a href="#s11">未成年者の個人情報</a></li>
+    <li><a href="#s12">国際的なデータ移転</a></li>
+    <li><a href="#s13">本ポリシーの変更</a></li>
+    <li><a href="#s14">お問い合わせ</a></li>
+  </ol>
+</div>
+
+<!-- 第1条 -->
+<div class="legal-section" id="s1">
+  <h2>第1条（基本方針）</h2>
+  <p>株式会社moluta（以下「当社」といいます）は、個人情報の保護に関する法律（以下「個人情報保護法」といいます）その他の関連法令およびガイドラインを遵守し、ポイ活プラットフォーム「ドロマ」（以下「本サービス」といいます）において取得する個人情報を適切に取り扱います。</p>
+  <p>本プライバシーポリシー（以下「本ポリシー」といいます）は、本サービスにおける個人情報の収集、利用、共有および保護に関する方針を定めるものです。</p>
+</div>
+
+<!-- 第2条 -->
+<div class="legal-section" id="s2">
+  <h2>第2条（収集する情報）</h2>
+  <p>当社は、本サービスの提供にあたり、以下の情報を収集することがあります。</p>
+
+  <h3>2-1. ユーザーが直接提供する情報</h3>
+  <table class="info-table">
+    <tr><th>情報の種類</th><th>収集の目的</th></tr>
+    <tr><td>メールアドレス</td><td>アカウント登録・認証・重要な通知の送信</td></tr>
+    <tr><td>ニックネーム</td><td>サービス内での表示名として使用</td></tr>
+    <tr><td>生年月日（年齢確認用）</td><td>年齢制限の確認（16歳以上）</td></tr>
+    <tr><td>交換先の口座情報</td><td>ポイント交換処理（PayPay ID等）</td></tr>
+  </table>
+
+  <h3>2-2. 自動的に収集する情報</h3>
+  <table class="info-table">
+    <tr><th>情報の種類</th><th>収集の目的</th></tr>
+    <tr><td>端末情報（OS、ブラウザ、端末モデル等）</td><td>サービスの最適化・不正利用の検知</td></tr>
+    <tr><td>IPアドレス</td><td>不正防止・セキュリティ対策・地域判定</td></tr>
+    <tr><td>Cookie・セッション情報</td><td>ログイン状態の維持・サービス改善</td></tr>
+    <tr><td>アクセスログ（アクセス日時、参照元URL等）</td><td>サービスの利用状況分析・改善</td></tr>
+    <tr><td>広告識別子（IDFA / GAID）</td><td>案件の達成トラッキング・広告効果測定</td></tr>
+  </table>
+
+  <h3>2-3. サービス利用に伴い生成される情報</h3>
+  <table class="info-table">
+    <tr><th>情報の種類</th><th>収集の目的</th></tr>
+    <tr><td>ポイントの取得・交換履歴</td><td>サービス提供・不正検知・ユーザーサポート</td></tr>
+    <tr><td>案件への参加履歴</td><td>重複参加の防止・案件の推薦</td></tr>
+    <tr><td>お問い合わせ内容</td><td>ユーザーサポートの提供</td></tr>
+  </table>
+</div>
+
+<!-- 第3条 -->
+<div class="legal-section" id="s3">
+  <h2>第3条（利用目的）</h2>
+  <p>当社は、収集した個人情報を以下の目的のために利用します。</p>
+  <ol>
+    <li>本サービスの提供、運営および維持</li>
+    <li>ユーザーアカウントの登録、認証および管理</li>
+    <li>ポイントの付与、管理および交換処理</li>
+    <li>案件の達成確認およびポイント付与の判定</li>
+    <li>ユーザーサポート、お問い合わせへの対応</li>
+    <li>不正利用の検知、調査および防止</li>
+    <li>サービスの改善、新機能の開発および品質向上</li>
+    <li>利用状況の統計・分析（個人を特定しない形式で実施）</li>
+    <li>重要なお知らせ、規約変更等の通知</li>
+    <li>当社が提供する関連サービスのご案内（ユーザーが事前に同意した場合に限る）</li>
+    <li>法令に基づく対応</li>
+  </ol>
+  <p>上記以外の目的で個人情報を利用する必要が生じた場合は、事前にユーザーにその目的を通知し、同意を得るものとします。</p>
+</div>
+
+<!-- 第4条 -->
+<div class="legal-section" id="s4">
+  <h2>第4条（第三者への提供）</h2>
+  <p>当社は、以下の場合を除き、ユーザーの個人情報を第三者に提供いたしません。</p>
+  <ol>
+    <li>ユーザーの事前の同意がある場合</li>
+    <li>法令に基づく場合（裁判所の命令、捜査機関からの照会等）</li>
+    <li>人の生命、身体または財産の保護のために必要がある場合であって、ユーザーの同意を得ることが困難であるとき</li>
+    <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合</li>
+    <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合</li>
+    <li>ポイント交換先（PayPay、Amazon等）への交換処理に必要な最小限の情報を提供する場合</li>
+    <li>案件の達成確認のために、広告主またはアドネットワークに対し必要最小限の情報（端末識別子等）を提供する場合。なお、この場合において氏名、メールアドレス等の直接的な個人識別情報は提供しません</li>
+  </ol>
+</div>
+
+<!-- 第5条 -->
+<div class="legal-section" id="s5">
+  <h2>第5条（業務委託先への提供）</h2>
+  <p>当社は、利用目的の達成に必要な範囲内において、個人情報の取り扱いの全部または一部を外部の事業者に委託することがあります。この場合、当社は委託先に対して個人情報の安全管理が図られるよう、必要かつ適切な監督を行います。</p>
+</div>
+
+<!-- 第6条 -->
+<div class="legal-section" id="s6">
+  <h2>第6条（外部サービスの利用）</h2>
+  <p>本サービスでは、以下の外部サービスを利用しています。各サービスにおける個人情報の取り扱いについては、それぞれのプライバシーポリシーをご確認ください。</p>
+  <table class="info-table">
+    <tr><th>外部サービス</th><th>利用目的</th></tr>
+    <tr><td>Google Analytics</td><td>アクセス解析・利用状況の分析</td></tr>
+    <tr><td>Firebase（Google）</td><td>認証基盤・データベース</td></tr>
+    <tr><td>オファーウォールSDK（MAF MyChips、SKYFLAG等）</td><td>案件の提供・達成トラッキング</td></tr>
+    <tr><td>PayPay</td><td>ポイント交換処理</td></tr>
+  </table>
+  <p>これらの外部サービスが独自に収集する情報の取り扱いについて、当社は一切の責任を負いません。</p>
+</div>
+
+<!-- 第7条 -->
+<div class="legal-section" id="s7">
+  <h2>第7条（Cookieおよびトラッキング技術）</h2>
+  <ol>
+    <li>本サービスでは、サービスの提供および改善のためにCookieおよび類似のトラッキング技術を使用しています。</li>
+    <li>Cookieの利用目的は以下のとおりです。
+      <ul>
+        <li>ログイン状態の維持・セッション管理</li>
+        <li>ユーザーの設定・好みの記憶</li>
+        <li>サービスの利用状況の分析</li>
+        <li>案件の達成トラッキング</li>
+        <li>不正利用の防止</li>
+      </ul>
+    </li>
+    <li>ユーザーは、ブラウザの設定によりCookieの受け入れを拒否することができます。ただし、Cookieを無効にした場合、本サービスの一部の機能が正常に動作しない場合があります。</li>
+  </ol>
+</div>
+
+<!-- 第8条 -->
+<div class="legal-section" id="s8">
+  <h2>第8条（データの保持期間）</h2>
+  <ol>
+    <li>当社は、利用目的の達成に必要な期間、個人情報を保持します。</li>
+    <li>具体的な保持期間は以下のとおりです。
+      <table class="info-table">
+        <tr><th>データの種類</th><th>保持期間</th></tr>
+        <tr><td>アカウント情報</td><td>退会後6か月</td></tr>
+        <tr><td>ポイント取得・交換履歴</td><td>最終取引から5年間（税務上の要請に基づく）</td></tr>
+        <tr><td>アクセスログ</td><td>取得から1年間</td></tr>
+        <tr><td>お問い合わせ内容</td><td>対応完了から3年間</td></tr>
+      </table>
+    </li>
+    <li>法令に基づき保持が義務付けられている情報については、当該法令が定める期間、保持するものとします。</li>
+    <li>保持期間が経過した個人情報は、速やかに削除または匿名化します。</li>
+  </ol>
+</div>
+
+<!-- 第9条 -->
+<div class="legal-section" id="s9">
+  <h2>第9条（安全管理措置）</h2>
+  <p>当社は、個人情報の漏洩、滅失または毀損の防止その他の個人情報の安全管理のために、以下の措置を講じます。</p>
+  <ol>
+    <li><strong>組織的安全管理措置：</strong>個人情報の取り扱いに関する責任者を設置し、取り扱い規程を整備します。</li>
+    <li><strong>人的安全管理措置：</strong>従業者に対し、個人情報の適切な取り扱いについて定期的な教育を実施します。</li>
+    <li><strong>物理的安全管理措置：</strong>個人情報を取り扱う機器および電子媒体等の盗難または紛失等を防止するための措置を講じます。</li>
+    <li><strong>技術的安全管理措置：</strong>通信の暗号化（SSL/TLS）、アクセス制御、不正アクセスの検知等の技術的対策を実施します。</li>
+  </ol>
+</div>
+
+<!-- 第10条 -->
+<div class="legal-section" id="s10">
+  <h2>第10条（ユーザーの権利）</h2>
+  <p>ユーザーは、個人情報保護法に基づき、当社に対して以下の請求を行うことができます。</p>
+  <ol>
+    <li><strong>開示請求：</strong>当社が保有するユーザーの個人情報の開示を請求することができます。</li>
+    <li><strong>訂正・追加・削除請求：</strong>個人情報の内容が事実でない場合、その訂正、追加または削除を請求することができます。</li>
+    <li><strong>利用停止・消去請求：</strong>個人情報が利用目的の範囲を超えて取り扱われている場合、またはユーザーの同意なく第三者に提供されている場合、その利用の停止または消去を請求することができます。</li>
+    <li><strong>第三者提供停止請求：</strong>個人情報の第三者への提供の停止を請求することができます。</li>
+    <li><strong>データポータビリティ：</strong>ユーザーは、当社が保有する自己の個人情報について、構造化された一般的に使用される機械可読な形式で提供を受ける権利を有します。</li>
+  </ol>
+  <p>上記の請求を行う場合は、第14条に定めるお問い合わせ先までご連絡ください。本人確認の上、法令に定められた期間内に対応いたします。</p>
+  <p>なお、個人情報保護法その他の法令により、当社が開示等の義務を負わない場合は、ご請求に応じかねることがあります。あらかじめご了承ください。</p>
+</div>
+
+<!-- 第11条 -->
+<div class="legal-section" id="s11">
+  <h2>第11条（未成年者の個人情報）</h2>
+  <ol>
+    <li>本サービスは16歳以上の方を対象としています。16歳未満の方からの個人情報の収集は意図しておりません。</li>
+    <li>16歳以上18歳未満のユーザーについては、保護者の同意を得た上で本サービスを利用していただくものとします。</li>
+    <li>16歳未満の方の個人情報を意図せず収集していることが判明した場合、当社は速やかに当該情報を削除します。</li>
+  </ol>
+</div>
+
+<!-- 第12条 -->
+<div class="legal-section" id="s12">
+  <h2>第12条（国際的なデータ移転）</h2>
+  <p>本サービスの運営にあたり、ユーザーの個人情報が日本国外のサーバーに保存・処理される場合があります（クラウドサービスの利用等）。この場合、当社は個人情報保護法およびGDPR（EU一般データ保護規則）等の適用ある法令に基づき、適切な保護措置を講じた上でデータの移転を行います。</p>
+</div>
+
+<!-- 第13条 -->
+<div class="legal-section" id="s13">
+  <h2>第13条（本ポリシーの変更）</h2>
+  <ol>
+    <li>当社は、法令の改正、サービス内容の変更その他の事由により、本ポリシーを変更することがあります。</li>
+    <li>重要な変更を行う場合は、変更の効力発生日の14日前までに、本サービス上での掲示または電子メール等の方法によりユーザーに通知します。</li>
+    <li>変更後の本ポリシーは、本サービス上に掲載した時点から効力を生じるものとします。</li>
+  </ol>
+</div>
+
+<!-- 第14条 -->
+<div class="legal-section" id="s14">
+  <h2>第14条（お問い合わせ）</h2>
+  <p>個人情報の取り扱いに関するお問い合わせ、開示等のご請求は、以下の窓口までご連絡ください。</p>
+  <div class="contact-box">
+    <p style="font-weight:700;color:rgba(255,255,255,.9);font-size:15px;margin-bottom:12px">個人情報に関するお問い合わせ窓口</p>
+    <p><span style="color:var(--tx2);font-size:12px">事業者名</span><br>株式会社moluta</p>
+    <p><span style="color:var(--tx2);font-size:12px">代表者</span><br>代表取締役 満野 遥</p>
+    <p><span style="color:var(--tx2);font-size:12px">所在地</span><br>〒150-0001 東京都渋谷区神宮前六丁目23番4号 桑野ビル2階</p>
+    <p><span style="color:var(--tx2);font-size:12px">メールアドレス</span><br><a href="mailto:moluta0329@gmail.com">moluta0329@gmail.com</a></p>
+    <p><span style="color:var(--tx2);font-size:12px">電話番号</span><br><a href="tel:080-5442-0179">080-5442-0179</a></p>
+  </div>
+</div>
+
+<div class="sep" style="margin-bottom:40px"></div>
+
+<div style="text-align:center;padding:20px 0 0;font-size:13px;color:var(--tx2)">
+  <p style="margin-bottom:6px">制定日：2026年3月20日</p>
+  <p style="margin-bottom:8px">株式会社moluta</p>
+  <p>代表取締役 満野 遥</p>
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <div class="nav-logo-icon" style="width:28px;height:28px;font-size:16px;border-radius:8px">D</div>
+        <div style="font-size:18px;font-weight:900">ドロマ</div>
+      </div>
+      <div class="footer-desc">ゲームするだけでポイントが貯まる。<br>新しい形のポイ活プラットフォーム。</div>
+    </div>
+    <div>
+      <h4>サービス</h4>
+      <a href="index.html#offers">案件一覧</a>
+      <a href="index.html#payout">交換方法</a>
+      <a href="app/auth/signup">新規登録</a>
+    </div>
+    <div>
+      <h4>サポート</h4>
+      <a href="index.html#faq">FAQ</a>
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+    <div>
+      <h4>運営</h4>
+      <a href="#">株式会社moluta</a>
+      <a href="mailto:moluta0329@gmail.com">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <div>&copy; 2026 ドロマ All rights reserved.</div>
+    <div>運営: 株式会社moluta</div>
+  </div>
+</footer>
+
 </body>
 </html>
