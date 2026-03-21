@@ -1,2 +1,2 @@
 :HL["/doroma/app/_next/static/chunks/14ws064ew0eg7.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"auth","param":null,"prefetchHints":0,"slots":{"children":{"name":"signup","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"zu-6NPAowBxDS8Wa7Q6EC"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"auth","param":null,"prefetchHints":0,"slots":{"children":{"name":"signup","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"Sp0dmGNL63FTVjj_JkKSI"}
