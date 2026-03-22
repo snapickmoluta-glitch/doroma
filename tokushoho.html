@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>特定商取引法に基づく表記 | ドロマ</title>
+<meta name="description" content="ドロマの特定商取引法に基づく表記です。">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pr:#DC2626;--pr-d:#B91C1C;--pr-l:#F87171;
+  --ac:#F87171;--ac-g:#FCA5A5;
+  --gd:#FFD700;--gd-d:#FFA500;
+  --bg:#0A0A0A;--bg2:#0F0808;--bg3:#150E0E;
+  --card:#1A1010;--card-h:#2A1818;
+  --tx:#FFFFFF;--tx2:#9E8B8B;
+  --ok:#00E676;--ng:#FF5252;
+  --bd:rgba(255,255,255,0.05);
+  --mw:860px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.7}
+
+/* ===== AMBIENT ===== */
+.bg-mesh{position:fixed;inset:0;pointer-events:none;z-index:0}
+.bg-mesh::before{content:'';position:absolute;top:-20%;right:-10%;width:800px;height:800px;background:radial-gradient(circle,rgba(220,38,38,0.08) 0%,transparent 70%);animation:drift 20s ease-in-out infinite}
+.bg-mesh::after{content:'';position:absolute;bottom:-10%;left:-15%;width:600px;height:600px;background:radial-gradient(circle,rgba(248,113,113,0.06) 0%,transparent 70%);animation:drift 25s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(20px,4vw,48px);height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,7,26,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--pr),var(--ac));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;box-shadow:0 2px 12px rgba(220,38,38,.35)}
+.nav-logo-text{font-size:22px;font-weight:900;background:linear-gradient(135deg,#fff,var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--tx2);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s;display:flex;align-items:center;gap:6px}
+.nav-back:hover{color:#fff}
+
+/* ===== PAGE ===== */
+.page-wrap{position:relative;z-index:2;min-height:100vh}
+
+.legal-header{padding:120px clamp(20px,4vw,48px) 40px;text-align:center}
+.legal-header h1{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:-.5px;margin-bottom:10px}
+.legal-header .subtitle{font-size:14px;color:var(--tx2)}
+.legal-header .updated{display:inline-block;margin-top:14px;padding:6px 16px;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.15);border-radius:8px;font-size:12px;color:var(--pr-l);font-weight:600}
+
+.legal-body{max-width:var(--mw);margin:0 auto;padding:0 clamp(20px,4vw,48px) 80px}
+
+/* TOC */
+.legal-toc{background:var(--card);border-radius:16px;border:1px solid var(--bd);padding:28px 32px;margin-bottom:48px}
+.legal-toc h2{font-size:14px;font-weight:800;margin-bottom:14px;color:var(--ac)}
+.legal-toc ol{padding-left:20px;columns:2;column-gap:32px}
+.legal-toc li{margin-bottom:5px;break-inside:avoid}
+.legal-toc a{color:var(--tx2);text-decoration:none;font-size:13px;transition:color .2s}
+.legal-toc a:hover{color:var(--pr-l)}
+
+/* Sections */
+.legal-section{margin-bottom:40px}
+.legal-section h2{font-size:18px;font-weight:800;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--bd);color:var(--pr-l)}
+.legal-section h3{font-size:15px;font-weight:700;margin:20px 0 10px;color:rgba(255,255,255,.9)}
+.legal-section p{font-size:14px;color:rgba(255,255,255,.72);line-height:1.95;margin-bottom:12px}
+.legal-section ol,.legal-section ul{padding-left:24px;margin-bottom:16px}
+.legal-section li{font-size:14px;color:rgba(255,255,255,.72);line-height:1.95;margin-bottom:6px}
+.legal-section ul{list-style:disc}
+
+.sep{height:1px;background:linear-gradient(90deg,transparent,rgba(220,38,38,.2) 30%,rgba(248,113,113,.2) 70%,transparent);margin:0 auto;max-width:var(--mw)}
+
+/* ===== FOOTER ===== */
+.footer{padding:48px clamp(20px,4vw,48px) 32px;border-top:1px solid var(--bd);position:relative;z-index:2}
+.footer-inner{max-width:var(--mw);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
+.footer-brand{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.footer-desc{font-size:12px;color:var(--tx2);line-height:1.8}
+.footer h4{font-size:12px;font-weight:700;margin-bottom:12px;color:var(--tx2);text-transform:uppercase;letter-spacing:1px}
+.footer a{display:block;color:var(--tx2);text-decoration:none;font-size:12px;padding:3px 0;transition:color .2s}
+.footer a:hover{color:#fff}
+.footer-btm{max-width:var(--mw);margin:32px auto 0;padding-top:20px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--tx2)}
+
+@media(max-width:768px){
+  .legal-toc{padding:20px 24px}
+  .legal-toc ol{columns:1}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-btm{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">D</div>
+    <div class="nav-logo-text">ドロマ</div>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    トップに戻る
+  </a>
+</nav>
+
+<div class="page-wrap">
+
+<!-- HEADER -->
+<div class="legal-header">
+  <h1>特定商取引法に基づく表記</h1>
+  <div class="subtitle">Act on Specified Commercial Transactions</div>
+  <div class="updated">最終更新日：2026年3月23日</div>
+</div>
+
+<!-- BODY -->
+<div class="legal-body">
+
+<div class="legal-section">
+  <h2>事業者情報</h2>
+  <table style="width:100%;border-collapse:collapse">
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);width:30%;vertical-align:top">事業者名</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">株式会社moluta（Moluta Inc.）</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">代表者</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">代表取締役 満野 遥</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">所在地</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">〒150-0001<br>東京都渋谷区神宮前六丁目23番4号 桑野ビル2階</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">電話番号</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">080-5442-0179<br><span style="font-size:12px;color:var(--tx2)">受付時間：14:00〜18:00（土日祝を除く）</span></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">メールアドレス</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)"><a href="mailto:moluta0329@gmail.com" style="color:var(--pr-l);text-decoration:none">moluta0329@gmail.com</a></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">サービスURL</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)"><a href="https://snapickmoluta-glitch.github.io/doroma/" style="color:var(--pr-l);text-decoration:none">https://snapickmoluta-glitch.github.io/doroma/</a></td>
+    </tr>
+  </table>
+</div>
+
+<div class="legal-section">
+  <h2>サービスの内容</h2>
+  <table style="width:100%;border-collapse:collapse">
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);width:30%;vertical-align:top">サービス名</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">ドロマ（Doroma）</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">サービス概要</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">ゲームアプリのプレイ等の条件達成によりポイントを獲得し、Amazonギフト券・銀行振込等と交換できるポイ活プラットフォームです。</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">利用料金</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)"><strong>無料</strong><br><span style="font-size:12px;color:var(--tx2)">本サービスの利用に料金は一切かかりません。通信費等はユーザー負担となります。</span></td>
+    </tr>
+  </table>
+</div>
+
+<div class="legal-section">
+  <h2>ポイント交換について</h2>
+  <table style="width:100%;border-collapse:collapse">
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);width:30%;vertical-align:top">交換レート</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">1ポイント = 1円</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">交換先</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">
+        <ul style="padding-left:16px;margin:0">
+          <li>Amazonギフト券（最低300pt〜 / 手数料無料）</li>
+          <li>銀行振込（最低1,000pt〜 / 振込手数料200pt）</li>
+        </ul>
+      </td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">交換の処理期間</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">
+        <ul style="padding-left:16px;margin:0">
+          <li>Amazonギフト券：申請後24時間以内</li>
+          <li>銀行振込：申請後3営業日以内</li>
+        </ul>
+      </td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">ポイントの有効期限</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">最終獲得日または最終交換日から180日間</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--bd)">
+      <td style="padding:16px 12px;font-size:14px;font-weight:700;color:var(--ac);vertical-align:top">返品・返金</td>
+      <td style="padding:16px 12px;font-size:14px;color:rgba(255,255,255,.8)">ポイント交換後の取消し・返金は原則お受けできません。<br><span style="font-size:12px;color:var(--tx2)">※当社の責めに帰すべき事由による場合は、個別に対応いたします。</span></td>
+    </tr>
+  </table>
+</div>
+
+<div class="legal-section">
+  <h2>お問い合わせ</h2>
+  <p>サービスに関するご質問・ご不明点がございましたら、以下までお問い合わせください。</p>
+  <ul>
+    <li>メール：<a href="mailto:moluta0329@gmail.com" style="color:var(--pr-l);text-decoration:none">moluta0329@gmail.com</a></li>
+    <li>お問い合わせフォーム：<a href="contact.html" style="color:var(--pr-l);text-decoration:none">こちら</a></li>
+  </ul>
+  <p>回答は通常3営業日以内にいたします。</p>
+</div>
+
+<div class="sep" style="margin-bottom:40px"></div>
+
+<div style="text-align:center;padding:20px 0 0;font-size:13px;color:var(--tx2)">
+  <p style="margin-bottom:6px">制定日：2026年3月23日</p>
+  <p style="margin-bottom:8px">株式会社moluta</p>
+  <p>代表取締役 満野 遥</p>
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <div class="nav-logo-icon" style="width:28px;height:28px;font-size:16px;border-radius:8px">D</div>
+        <div style="font-size:18px;font-weight:900">ドロマ</div>
+      </div>
+      <div class="footer-desc">ゲームするだけでポイントが貯まる。<br>新しい形のポイ活プラットフォーム。</div>
+    </div>
+    <div>
+      <h4>サービス</h4>
+      <a href="index.html#offers">案件一覧</a>
+      <a href="index.html#payout">交換方法</a>
+      <a href="app/auth/signup">新規登録</a>
+    </div>
+    <div>
+      <h4>サポート</h4>
+      <a href="index.html#faq">FAQ</a>
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+    <div>
+      <h4>運営</h4>
+      <a href="#">株式会社moluta</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <div>&copy; 2026 ドロマ All rights reserved.</div>
+    <div>運営: 株式会社moluta</div>
+  </div>
+</footer>
+
+</body>
+</html>
