@@ -8,11 +8,11 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--pr:#6C5CE7;--ac:#00D2D3;--bg:#07071A;--bg2:#0C0C24;--card:#151530;--tx:#fff;--tx2:#7A7A9E;--bd:rgba(255,255,255,.05);--mw:720px}
+:root{--pr:#DC2626;--ac:#F87171;--bg:#0A0A0A;--bg2:#0F0808;--card:#1A1010;--tx:#fff;--tx2:#9E8B8B;--bd:rgba(255,255,255,.05);--mw:720px}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.7}
 
 .bg-mesh{position:fixed;inset:0;pointer-events:none;z-index:0}
-.bg-mesh::before{content:'';position:absolute;top:-20%;right:-10%;width:800px;height:800px;background:radial-gradient(circle,rgba(108,92,231,0.08) 0%,transparent 70%);animation:drift 20s ease-in-out infinite}
+.bg-mesh::before{content:'';position:absolute;top:-20%;right:-10%;width:800px;height:800px;background:radial-gradient(circle,rgba(220,38,38,0.08) 0%,transparent 70%);animation:drift 20s ease-in-out infinite}
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
 
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(20px,4vw,48px);height:64px;display:flex;align-items:center;background:rgba(7,7,26,.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
@@ -34,10 +34,10 @@ textarea{min-height:160px;resize:vertical}
 select{appearance:none;cursor:pointer}
 
 .submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--pr),var(--ac));border:none;border-radius:14px;color:#fff;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .3s}
-.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(108,92,231,.4)}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,38,38,.4)}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
-.info-box{background:rgba(108,92,231,.06);border:1px solid rgba(108,92,231,.15);border-radius:14px;padding:20px;margin-top:24px}
+.info-box{background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.15);border-radius:14px;padding:20px;margin-top:24px}
 .info-box h3{font-size:14px;font-weight:800;margin-bottom:8px}
 .info-box p{font-size:12px;color:var(--tx2);line-height:1.9}
 
@@ -135,7 +135,7 @@ async function handleSubmit(e) {
       body: JSON.stringify({
         content: '📩 **ドロマ お問い合わせ**',
         embeds: [{
-          color: 0x6C5CE7,
+          color: 0xDC2626,
           fields: [
             {name: '👤 お名前', value: data.name, inline: true},
             {name: '📧 メール', value: data.email, inline: true},
