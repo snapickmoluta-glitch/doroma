@@ -2,4 +2,4 @@
 2:I[54330,["/doroma/app/_next/static/chunks/0iny3j2b2p.f-.js","/doroma/app/_next/static/chunks/16yf-j4v13_r5.js","/doroma/app/_next/static/chunks/0yu0-b07.lprv.js"],"default"]
 3:I[75853,["/doroma/app/_next/static/chunks/0iny3j2b2p.f-.js","/doroma/app/_next/static/chunks/16yf-j4v13_r5.js","/doroma/app/_next/static/chunks/0yu0-b07.lprv.js"],"default"]
 4:[]
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"GE80_uPCXpH049ac1-JKt"}
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"17eJikKbvL1x-3UWiDMZ_"}
